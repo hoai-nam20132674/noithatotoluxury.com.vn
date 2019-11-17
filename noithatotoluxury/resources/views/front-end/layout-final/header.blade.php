@@ -177,3 +177,4 @@
 		</div><!-- .header-bg-container -->
 	</div><!-- header-wrapper-->
 </header>
+@include('front-end.layout-final.menu-mobile')
