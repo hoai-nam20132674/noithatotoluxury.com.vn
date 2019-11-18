@@ -13,7 +13,9 @@
 				</div>
 				<div class="woocommerce columns-4 ">
 					<div class="products row row-small large-columns-4 medium-columns-3 small-columns-2 has-equal-box-heights">
-						@include('front-end.layout-final.product-box')
+						@foreach($products_highlight as $product)	
+							@include('front-end.layout-final.product-box')
+						@endforeach
 					</div><!-- row -->
 				</div>
 			</div>

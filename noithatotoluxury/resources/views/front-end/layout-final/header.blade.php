@@ -110,9 +110,13 @@
 							</ul><!-- .nav-dropdown -->
 						</li>
 						<li class="cart-item has-icon has-dropdown">
+							@php
+			                  $totalQuantity = Cart::getTotalQuantity();
+			                  $content = Cart::getContent();
+			                @endphp
 
 							<a href="https://mdbuddy.vn/cart/" title="Giỏ hàng" class="header-cart-link is-small">
-								<span class="image-icon header-cart-icon" data-icon-label="1">
+								<span class="image-icon header-cart-icon" data-icon-label="{{$totalQuantity}}">
 							    	<img class="cart-img-icon" alt="Giỏ hàng" src="https://mdbuddy.vn/home/wp-content/uploads/2018/06/shopping-cart.png"/>
 							  	</span><!-- .cart-img-inner -->
 							</a>

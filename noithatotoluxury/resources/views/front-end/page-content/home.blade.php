@@ -12,7 +12,7 @@
 						<div class="vc_row-full-width vc_clearfix"></div>
 
 						@include('front-end.layout-final.product-highlight')
-
+					
 						<div class="vc_row-full-width vc_clearfix"></div>
 
 						@include('front-end.layout-final.cate-list')
