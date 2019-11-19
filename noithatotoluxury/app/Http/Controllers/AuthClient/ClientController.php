@@ -45,7 +45,7 @@ class ClientController extends Controller
         // $cates = $cateRoot;
         $cate = $this->arrayColumn($cates,$col='id');
         $products_highlight = Products::join('images_products', 'products.id', '=', 'images_products.products_id')->join('products_detail', 'products.id', '=', 'products_detail.products_id')->where('products.display',1)->where('products.highlights',1)->where('images_products.role',1)->orderBy('products.updated_at', 'DESC')
-            ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id')
+            ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id','products_detail.id AS products_detail_id')
             ->get();
         $productsGroup = $this->groupProduct($products_highlight);
         $products_highlight = $this->filterProduct($productsGroup);
@@ -843,6 +843,10 @@ class ClientController extends Controller
         // $products_detail = Products::join('images_products', 'products.id', '=', 'images_products.products_id')->join('products_detail', 'products.id', '=', 'products_detail.products_id')->join('products_properties', 'products_properties.products_detail_id', '=', 'products_detail.id')->where('products.id',$products_id)->whereIn('products_properties.properties_id',$properties_id)->where('images_products.role',1)->select('products_detail.*','images_products.url AS avatar','products.name')->get();
         // dd($products_detail);
 
+    }
+    public function checkCountProperties($products_detail_id){
+        $products_properties = ProductsProperties::where('products_detail_id',$products_detail_id)->get();
+        echo count($products_properties);
     }
     public function addToCart($id,$quantity){
         // $products_detail = ProductsDetail::where('id',$id)->get()->first();

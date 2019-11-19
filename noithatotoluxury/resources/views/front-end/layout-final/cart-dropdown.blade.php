@@ -2,7 +2,7 @@
 <ul class="nav-dropdown nav-dropdown-default">
     <li class="html widget_shopping_cart">
 	    <div class="widget_shopping_cart_content">
-			<ul class="woocommerce-mini-cart cart_list product_list_widget ">
+			<ul class="woocommerce-mini-cart cart_list product_list_widget list-item-cart">
 				@foreach($content as $item)
 				  	@php
 					    $products_properties = App\ProductsProperties::where('products_detail_id',$item->id)->get();
@@ -11,10 +11,10 @@
 				    
 					@endphp
 					<li class="woocommerce-mini-cart-item mini_cart_item item product-cart" data-id="{{$item->id}}">
-						<a data-id="{{$item->id}}" class="remove remove_from_cart_button remove-item-cart" aria-label="Xóa sản phẩm này" price="{{$item->price*$item->quantity}}">&times;</a>
+						<a href="" data-id="{{$item->id}}" class="remove remove_from_cart_button remove-item-cart" aria-label="Xóa sản phẩm này" price="{{$item->price*$item->quantity}}">&times;</a>
 						<a href="{{$item->attributes->url}}">
 							<img width="250" height="250" src="{{asset('uploads/images/products/avatar/'.$item->attributes->img)}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="{{$item->name}}" sizes="(max-width: 250px) 100vw, 250px" />{{$item->name}} @foreach($properties as $pp) {{$pp->name}} {{$pp->value}},@endforeach</a>
-						<span class="quantity">{{$item->quantity}} &times; <span class="woocommerce-Price-amount amount">{!!number_format($item->price)!!}<span class="woocommerce-Price-currencySymbol">&#8363;</span></span></span>
+						<span data-id="{{$item->id}}" value="{{$item->quantity}}" class="quantity">{{$item->quantity}}<span class="woocommerce-Price-amount amount"> &times; {!!number_format($item->price)!!}<span class="woocommerce-Price-currencySymbol">&#8363;</span></span></span>
 					</li>
 				@endforeach
 			</ul>

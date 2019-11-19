@@ -157,6 +157,7 @@ var wc_password_strength_meter_params = {"min_password_strength":"3","i18n_passw
 /* ]]> */
 </script>
 <script type='text/javascript' src="{{asset('noithatotoluxury/js/password2-strength-meter.min.js')}}"></script>
+
 <script type="text/javascript" src="{{asset('noithatotoluxury/js/main.js')}}"></script>
 <script type="text/javascript" src="{{asset('noithatotoluxury/js/product.js')}}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

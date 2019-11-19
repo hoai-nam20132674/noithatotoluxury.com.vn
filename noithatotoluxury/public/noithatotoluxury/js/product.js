@@ -29,7 +29,7 @@ jQuery(document).on('click', '.check', function(event) {
 				}
 			}
 		    jQuery(".price-detail").attr('price',price);
-		    price = price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, 'jQuery1,')+' đ';
+		    price = price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 		    jQuery(".price-detail").empty();
 		    jQuery(".price-detail").append(price);
 		    jQuery(".count-product-detail").empty();
@@ -39,122 +39,9 @@ jQuery(document).on('click', '.check', function(event) {
 	}
 	
 });
-jQuery(document).on('click', '#add-to-cart', function(event) {
-	event.preventDefault();
-	count_properties = jQuery(".swatch").length;
-	check = jQuery(".check[check=1]").length;
-	if(check!=count_properties){
-		swal("Không thành công", "Vui lòng chọn thuộc tính cho sản phẩm", "warning");
-	}
-	else{
-		var properties_select = '';
-		var text = '';
-		for(var i=0;i<count_properties;i++){
-			var selector = jQuery(".swatch[id="+i+"]");
-			properties_select = properties_select+'-'+selector.children(".check[check=1]").attr('properties_id');
-			text = text+' '+selector.children(".check[check=1]").attr('properties_type')+' '+selector.children(".check[check=1]").attr('data-value');
 
-		}
-		var products_id = jQuery(this).attr('products_id');
-		var quantity = jQuery(".qty").val();
-		console.log(quantity);
-		var url = '/check-add-to-cart/'+products_id+'-'+quantity+''+properties_select;
-		jQuery.ajax({
-			type: 'GET',
-			url: url,
-			dataType: 'html',
-			success: function(data) {
-				if(data=='hết hàng'){
-					swal(text+" đã hết hàng", "Vui lòng chọn thuộc tính khác cho sản phẩm này", "warning");
-				}
-				else if(data=='không đủ hàng'){
-					swal(text+" không đủ ", "Vui lòng chọn số lượng it hơn " +quantity+  " sản phẩm", "warning");
-				}
-				else{
-					for(var i=0;i<data.length;i++){
-						if(data[i] == ':'){
-							var products_detail_id = data.substring(0,i);
-						}
-					}
-					url = '/add-to-cart/'+products_detail_id+'-'+quantity;
-					jQuery.ajax({
-						type: 'GET',
-						url: url,
-						dataType: 'html',
-						success: function(data) {
-							swal({
-							  title: "Thêm vào giỏ hàng thành công",
-							  text: "",
-							  icon: "success",
-							  buttons: true,
-							  buttons: ["Giỏ hàng", true],
-							})
-							.then((willDelete) => {
-							  if (willDelete) {
-							  	//cập nhật số lượng sản phẩm giỏ hàng
-							  	cartCount = jQuery(".cartCount").attr('cart-count');
-							  	cartCount = parseInt(cartCount);
-							  	quantity = parseInt(quantity);
-								jQuery(".cartCount").empty();
-								jQuery(".cartCount").append(cartCount+quantity);
-								jQuery(".cartCount").attr('cart-count',cartCount+quantity);
-								//end
-								// --------------
-								// cập nhật item giỏ hàng
-								var element = jQuery(".product-cart[data-id="+products_detail_id+"]");
-								//kiểm tra sản phẩm đã có trong giỏ hàng chưa
-							    if( element.length ==0){ //chưa có
-							    	var product_url = location.href;
-							    	var title = jQuery(".title-head").attr('title');
-							    	var avatar = jQuery("img.avatar").attr('src');
-							    	var price = jQuery(".price-detail").attr('price');
-							    	var totalPrice = price*quantity;
-							    	price = price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, 'jQuery1,')+' đ';
-							    	var html = '<li class="item product-cart" data-id="'+products_detail_id+'"><div class="border_list"><a class="product-image" href="'+product_url+'" title="'+title+'"><img alt="'+title+'" src="'+avatar+'" width="100"></a><div class="detail-item"><div class="product-details"><p class="product-name"><a href="'+product_url+'" title="'+title+'">'+title+' '+text+'</a></p></div><div class="product-details-bottom"><span class="price pricechange">Giá: '+price+'</span><a data-id="'+products_detail_id+'" title="Xóa" class="remove-item-cart fa fa-trash-o" price="'+totalPrice+'">&nbsp;</a><div class="quantity-select qty_drop_cart"><p data-id="'+products_detail_id+'" value="'+quantity+'">Số Lượng: '+quantity+'</p></div></div></div></div></li>';
-							    	jQuery(".list-item-cart").append(html);
-							    	var price_plus = parseInt(totalPrice);
-									var old_total_price = parseInt(jQuery(".totalPrice").attr('price'));
-									var new_total_price = old_total_price + price_plus;
-									jQuery(".totalPrice").empty();
-									jQuery(".totalPrice").attr('price',new_total_price);
-									new_total_price = new_total_price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, 'jQuery1,')+' đ';
-									jQuery(".totalPrice").append(new_total_price);
-							    }
 
-							    else{ //chưa có sản phẩm trong giỏ hàng
-							    	var old_quantity = parseInt(jQuery("p[data-id="+products_detail_id+"]").attr('value'));
-							    	var new_quantity = old_quantity + quantity;
-							    	jQuery("p[data-id="+products_detail_id+"]").attr('value',new_quantity);
-							    	jQuery("p[data-id="+products_detail_id+"]").empty();
-							    	jQuery("p[data-id="+products_detail_id+"]").append('Số lượng: '+new_quantity);
-							    	var price = jQuery(".price-detail").attr('price');
-							    	var price_plus = parseInt(price*quantity);
-							    	var old_total_price = parseInt(jQuery(".totalPrice").attr('price'));
-							    	var new_total_price = old_total_price + price_plus;
-							    	jQuery(".totalPrice").empty();
-									jQuery(".totalPrice").attr('price',new_total_price);
-									jQuery(".remove-item-cart[data-id="+products_detail_id+"]").attr('price',new_total_price);
-									new_total_price = new_total_price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, 'jQuery1,')+' đ';
-									jQuery(".totalPrice").append(new_total_price);
 
-							    }
-
-							  } else {
-							    window.location='/cart';
-							  }
-							});
-						}
-						
-					});
-
-				}
-				
-			}
-			
-		});
-		
-	}
-});
 jQuery(document).on('click', '.follow-system', function(event) {
 	var system_id = jQuery(this).attr('system-id');
 	var user_id = jQuery(this).attr('user-id');
