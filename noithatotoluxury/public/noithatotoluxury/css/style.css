@@ -14,3 +14,22 @@ Version: 3.0
 
 
 }
+.video-thumbnails a img {
+	opacity: 0.5;
+}
+.video-thumbnails a {
+	display: block;
+	border: 1px solid #0000001f;
+	
+}
+.video-thumbnails a:hover {
+	border-color: rgba(0,0,0,0.2);
+}
+.video-thumbnails {
+	padding: 0 20px;
+}
+.video-thumbnails a:hover img {
+	border-color: rgba(0,0,0,0.3);
+    opacity: 1;
+    transform: scale(1.2);
+}

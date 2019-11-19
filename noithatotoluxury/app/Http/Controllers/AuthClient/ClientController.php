@@ -357,6 +357,7 @@ class ClientController extends Controller
             ->get();
             $productsGroup = $this->groupProduct($products);
             $products = $this->filterProduct($productsGroup);
+
             $images = ImagesProducts::where('products_id',$products[0]->products_id)->where('role',0)->get();
             $products_detail = ProductsDetail::where('products_id',$products[0]->products_id)->get();
             $arrayProductsDetailId = $this->arrayColumn($products_detail,$col='id');
@@ -378,7 +379,13 @@ class ClientController extends Controller
             $properties = $array;
             
             $products = $products[0];
-            return view('front-end.page-content.product',['system'=>$system,'cates'=>$cates,'products'=>$products,'images'=>$images,'properties_type'=>$properties_type,'properties'=>$properties]);
+            $cate_parent = Categories::where('id', $products->categories_id)->get()->first();
+            $products_same = Products::join('images_products', 'products.id', '=', 'images_products.products_id')->join('products_detail', 'products.id', '=', 'products_detail.products_id')->where('products.categories_id',$cate_parent->id)->where('products.id','!=',$products->id)->where('images_products.role',1)
+            ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id','products_detail.id AS products_detail_id')
+            ->get();
+            $products_same_group = $this->groupProduct($products_same);
+            $products_same = $this->filterProduct($products_same_group);
+            return view('front-end.page-content.product',['system'=>$system,'cates'=>$cates,'products'=>$products,'images'=>$images,'properties_type'=>$properties_type,'properties'=>$properties, 'cate_parent'=>$cate_parent,'products_same'=>$products_same]);
             // dd($content);
             
         }

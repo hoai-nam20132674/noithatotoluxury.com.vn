@@ -45,6 +45,8 @@
 	<link rel='stylesheet' id='prettyphoto-css'  href="{{asset('noithatotoluxury/css/prettyPhoto.min.css')}}" type='text/css' media='all' />
 	<link rel='stylesheet' id='vc_pageable_owl-carousel-css-css'  href="{{asset('noithatotoluxury/css/owl.min.css')}}" type='text/css' media='all' />
 	<link rel='stylesheet' id='animate-css-css'  href="{{asset('noithatotoluxury/css/animate.min.css')}}" type='text/css' media='all' />
+	<link rel="stylesheet" type="text/css" href="{{asset('noithatotoluxury/css/photoswipe.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('noithatotoluxury/css/default-skin.css')}}">
 
 
 	<script type='text/javascript' src="{{asset('noithatotoluxury/js/jquery.js')}}"></script>
@@ -89,7 +91,60 @@
 </div><!-- #wrapper -->
 
 
+
 @include('front-end.layout-final.login-popup')
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+	<!-- Background of PhotoSwipe. It's a separate element as animating opacity is faster than rgba(). -->
+	<div class="pswp__bg"></div>
+
+	<!-- Slides wrapper with overflow:hidden. -->
+	<div class="pswp__scroll-wrap">
+
+		<!-- Container that holds slides.
+		PhotoSwipe keeps only 3 of them in the DOM to save memory.
+		Don't modify these 3 pswp__item elements, data is added later on. -->
+		<div class="pswp__container">
+			<div class="pswp__item"></div>
+			<div class="pswp__item"></div>
+			<div class="pswp__item"></div>
+		</div>
+
+		<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+		<div class="pswp__ui pswp__ui--hidden">
+
+			<div class="pswp__top-bar">
+
+				<!--  Controls are self-explanatory. Order can be changed. -->
+
+				<div class="pswp__counter"></div>
+
+				<button class="pswp__button pswp__button--close" aria-label="Đóng (Esc)"></button>
+
+				<button class="pswp__button pswp__button--zoom" aria-label="Phóng to/ thu nhỏ"></button>
+
+				<div class="pswp__preloader">
+					<div class="loading-spin"></div>
+				</div>
+			</div>
+
+			<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+				<div class="pswp__share-tooltip"></div>
+			</div>
+
+			<button class="pswp__button--arrow--left" aria-label="Ảnh trước (mũi tên trái)"></button>
+
+			<button class="pswp__button--arrow--right" aria-label="Ảnh tiếp (mũi tên phải)"></button>
+
+			<div class="pswp__caption">
+				<div class="pswp__caption__center"></div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
 
 
 <script type='text/javascript' src="{{asset('noithatotoluxury/js/js.cookie.min.js')}}"></script>
@@ -161,6 +216,14 @@ var wc_password_strength_meter_params = {"min_password_strength":"3","i18n_passw
 <script type="text/javascript" src="{{asset('noithatotoluxury/js/main.js')}}"></script>
 <script type="text/javascript" src="{{asset('noithatotoluxury/js/product.js')}}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type='text/javascript' src="{{asset('noithatotoluxury/js/photoswipe.min.js')}}"></script>
+<script type='text/javascript' src="{{asset('noithatotoluxury/js/photoswipe-ui-default.min.js')}}"></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wc_single_product_params = {"i18n_required_rating_text":"Vui l\u00f2ng ch\u1ecdn m\u1ed9t m\u1ee9c \u0111\u00e1nh gi\u00e1","review_rating_required":"yes","flexslider":{"rtl":false,"animation":"slide","smoothHeight":true,"directionNav":false,"controlNav":"thumbnails","slideshow":false,"animationSpeed":500,"animationLoop":false,"allowOneSlide":false},"zoom_enabled":"","zoom_options":[],"photoswipe_enabled":"1","photoswipe_options":{"shareEl":false,"closeOnScroll":false,"history":false,"hideAnimationDuration":0,"showAnimationDuration":0},"flexslider_enabled":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="{{asset('noithatotoluxury/js/single-product.min.js')}}"></script>
 
 </body>
 </html>
