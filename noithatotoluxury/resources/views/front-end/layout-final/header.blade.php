@@ -4,8 +4,8 @@
       		<div class="header-inner flex-row container logo-left medium-logo-center" role="navigation">
           		<div id="logo" class="flex-col logo">
 					<a href="https://mdbuddy.vn/" title="MDBuddy Vietnam - Fitness for all" rel="home">
-					    <img width="200" height="100" src="https://mdbuddy.vn/home/wp-content/uploads/2018/06/LOGO_MDBUDDY.png" class="header_logo header-logo" alt="MDBuddy Vietnam"/>
-					    <img  width="200" height="100" src="https://mdbuddy.vn/home/wp-content/uploads/2018/06/LOGO_MDBUDDY.png" class="header-logo-dark" alt="MDBuddy Vietnam"/>
+					    <img width="200" height="100" src="{{asset('uploads/images/systems/logo/logo.png')}}" class="header_logo header-logo" alt="MDBuddy Vietnam"/>
+					    <img  width="200" height="100" src="{{asset('uploads/images/systems/logo/'.$system->logo)}}" class="header-logo-dark" alt="MDBuddy Vietnam"/>
 					</a>
           		</div>
 

@@ -46,8 +46,10 @@
 						    $properties = App\Properties::join('properties_type','properties.properties_type_id','=','properties_type.id')->whereIn('properties.id',$properties_id)->select('properties.*','properties_type.name')->get();
 					    
 						@endphp
-						<tr class="woocommerce-cart-form__cart-item cart_item">
-							
+						<tr class="woocommerce-cart-form__cart-item cart_item product-cart" data-id="{{$item->id}}">
+							<td class="product-remove">
+								<a href="" data-id="{{$item->id}}" class="remove remove-item-cart" aria-label="Xóa sản phẩm này" price="{{$item->price*$item->quantity}}">&times;</a>
+							</td>
 
 							<td class="product-thumbnail">
 								<a href="{{$item->attributes->url}}"><img width="100%" src="{{asset('uploads/images/products/avatar/'.$item->attributes->img)}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" sizes="(max-width: 250px) 100vw, 250px"></a>
@@ -69,9 +71,10 @@
 								<div class="quantity buttons_added">
 									<input type="button" value="-" class="minus button is-form">
 									<label class="screen-reader-text" for="quantity_5dbd598f143fc">Số lượng</label>
-									<input type="number" id="quantity_5dbd598f143fc" class="input-text qty text" step="1" min="0" max="9999" name="cart[1e9f65024cd764a33b94a14b0e79f42d][qty]" value="{{$item->quantity}}" title="SL" size="4" pattern="[0-9]*" inputmode="numeric" aria-labelledby="Bộ 5 dây tập thể dục đàn hồi chính hãng MDBuddy MD1366 số lượng">
-									<input type="button" value="+" class="plus button is-form">	</div>
-								</td>
+									<input type="number" data-id="{{$item->id}}" class="input-text qty text quantity" step="1" min="0" max="9999" name="" old-value="{{$item->quantity}}" value="{{$item->quantity}}" title="SL" size="4" pattern="[0-9]*" inputmode="numeric" >
+									<input type="button" value="+" class="plus button is-form">
+								</div>
+							</td>
 
 							<td class="product-subtotal" data-title="Tổng">
 								<?php
@@ -89,7 +92,7 @@
 								<a class="button-continue-shopping button primary is-outline" href="https://mdbuddy.vn/shop/">← Tiếp tục xem sản phẩm</a>
 							</div>
 
-							<button type="submit" class="button primary mt-0 pull-left small" name="update_cart" value="Cập nhật giỏ hàng">Cập nhật giỏ hàng</button>
+							<button id="update-cart" type="button" class="button primary mt-0 pull-left small" name="update_cart" value="Cập nhật giỏ hàng">Cập nhật giỏ hàng</button>
 
 							<input type="hidden" id="woocommerce-cart-nonce" name="woocommerce-cart-nonce" value="74214fba4d"><input type="hidden" name="_wp_http_referer" value="/cart/">
 						</td>
@@ -120,7 +123,7 @@
 
 				<tbody><tr class="cart-subtotal">
 					<th>Tổng phụ</th>
-					<td data-title="Tổng phụ"><span class="woocommerce-Price-amount amount">{!!number_format(Cart::getTotal())!!}<span class="woocommerce-Price-currencySymbol">₫</span></span></td>
+					<td data-title="Tổng phụ"><span class="woocommerce-Price-amount amount totalPrice">{!!number_format(Cart::getTotal())!!}<span class="woocommerce-Price-currencySymbol">₫</span></span></td>
 				</tr>
 
 				
@@ -130,7 +133,7 @@
 				
 				<tr class="order-total">
 					<th>Tổng</th>
-					<td data-title="Tổng"><strong><span class="woocommerce-Price-amount amount">{!!number_format(Cart::getTotal())!!}<span class="woocommerce-Price-currencySymbol">₫</span></span></strong> </td>
+					<td data-title="Tổng"><strong><span class="woocommerce-Price-amount amount totalPrice">{!!number_format(Cart::getTotal())!!}<span class="woocommerce-Price-currencySymbol">₫</span></span></strong> </td>
 				</tr>
 
 				

@@ -60,8 +60,7 @@
 	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
 
 
-	<link rel="icon" href="https://mdbuddy.vn/home/wp-content/uploads/2018/06/cropped-ICON-1-32x32.png" sizes="32x32" />
-	<link rel="icon" href="https://mdbuddy.vn/home/wp-content/uploads/2018/06/cropped-ICON-1-192x192.png" sizes="192x192" />
+	<link rel="icon" href="{{asset('uploads/images/systems/logo/'.$system->shortcut_logo)}}" sizes="32x32" />
 	<link rel="apple-touch-icon-precomposed" href="https://mdbuddy.vn/home/wp-content/uploads/2018/06/cropped-ICON-1-180x180.png" />
 	<meta name="msapplication-TileImage" content="https://mdbuddy.vn/home/wp-content/uploads/2018/06/cropped-ICON-1-270x270.png" />
 	<script type="text/javascript">function setREVStartSize(e){									

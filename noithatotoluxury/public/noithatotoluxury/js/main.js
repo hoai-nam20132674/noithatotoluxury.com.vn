@@ -42,6 +42,23 @@ jQuery(document).on('click', '.remove-item-cart', function(event) {
 	});
 
 });
+
+
+// thêm sản phẩm vào giỏ hàng
+jQuery(document).on('click', '#update-cart', function(event) {
+	event.preventDefault();
+	var items = jQuery(".cart_item").length;
+	for(var i=0;i<items;i++){
+		var data_id = jQuery(".product-cart").attr('data-id');
+		var old_value = parseInt(jQuery(".quantity[data-id="+data_id+"]").attr('old-value'));
+		var new_value = parseInt(jQuery(".quantity[data-id="+data_id+"]").attr('value'));
+		console.log(new_value);
+	}
+	
+});
+// End thêm sản phẩm vào giỏ hàng
+// --------------------------------
+// cập nhật giỏ hàng
 jQuery(document).on('click', '#add-to-cart', function(event) {
 	event.preventDefault();
 	var count_properties = 0;
@@ -178,4 +195,3 @@ jQuery(document).on('click', '#add-to-cart', function(event) {
 	console.log(count_properties);
 	
 });
-
