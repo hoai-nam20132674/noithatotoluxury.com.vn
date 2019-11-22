@@ -83,7 +83,7 @@
                     }'
               >
               <div class="col is-nav-selected first">
-                  <a><img src="{{asset('uploads/images/products/avatar/'.$products->avatar)}}" width="250" height="250" class="attachment-woocommerce_thumbnail" /></a>
+                  <a><img src="{{asset('uploads/images/products/avatar/'.$products->avatar)}}" width="250" height="250" class="attachment-woocommerce_thumbnail avatar" data-id="{{$products->products_detail_id}}"/></a>
               </div>
               @foreach($images as $image)
                 <div class="col">
@@ -102,7 +102,7 @@
           <a href="{{$cate_parent->url}}">{{$cate_parent->name}}</a><span class="divider">&#47;</span> 
           <a title="{{$products->name}}">{!! \Illuminate\Support\Str::words($products->name, 4,'...')  !!}</a>
         </nav>
-        <h1 class="product-title entry-title">{{$products->name}}</h1>
+        <h1 class="product-title entry-title title-head" data-id="{{$products->products_detail_id}}" title="{{$products->name}}">{{$products->name}}</h1>
 
   	<div class="is-divider small"></div>
     <ul class="next-prev-thumbs is-small show-for-medium">
@@ -131,7 +131,7 @@
   <div class="price-wrapper">
   	<p class="price product-page-price price-on-sale">
       <del><span class="woocommerce-Price-amount amount">1.499.000<span class="woocommerce-Price-currencySymbol">&#8363;</span></span></del>
-      <ins><span class="woocommerce-Price-amount amount">{!!number_format($products->maxPrice)!!}<span class="woocommerce-Price-currencySymbol">&#8363;</span></span></ins>
+      <ins><span class="woocommerce-Price-amount amount price-detail" data-id="{{$products->products_detail_id}}" price="{{$products->price}}">{!!number_format($products->maxPrice)!!}<span class="woocommerce-Price-currencySymbol">&#8363;</span></span></ins>
     </p>
   </div>
   <!-- mô tả ngắn -->
@@ -146,6 +146,7 @@
     		<input type="button" value="-" class="minus button is-form">
         <label class="screen-reader-text" for="quantity_5dbbb52113bd0">Số lượng</label>
     		<input
+          data-id="{{$products->products_detail_id}}"
     			type="number"
     			id="quantity_5dbbb52113bd0"
     			class="input-text qty text"
@@ -162,7 +163,7 @@
     		<input type="button" value="+" class="plus button is-form">
       </div>
   	
-  		<button type="submit" name="add-to-cart" value="7084" class="single_add_to_cart_button button alt">Thêm vào giỏ</button>
+  		<button type="button" name="add-to-cart" id="add-to-cart" url="/{{$products->url}}" products_detail_id="{{$products->products_detail_id}}" products_id="{{$products->id}}" class="single_add_to_cart_button button alt">Thêm vào giỏ</button>
 
   	</form>
 
@@ -181,12 +182,12 @@
 
   <div class="social-icons share-icons share-row relative icon-style-outline " >
     <a href="whatsapp://send?text=B%E1%BB%99%205%20d%C3%A2y%20t%E1%BA%ADp%20th%E1%BB%83%20d%E1%BB%A5c%20%C4%91%C3%A0n%20h%E1%BB%93i%20ch%C3%ADnh%20h%C3%A3ng%20MDBuddy%20MD1366 - https://mdbuddy.vn/product/bo-5-day-tap-the-duc-dan-hoi-chinh-hang-mdbuddy-md1366/" data-action="share/whatsapp/share" class="icon button circle is-outline tooltip whatsapp show-for-medium" title="Share on WhatsApp"><i class="icon-phone"></i></a>
-    <a href="//www.facebook.com/sharer.php?u=https://mdbuddy.vn/product/bo-5-day-tap-the-duc-dan-hoi-chinh-hang-mdbuddy-md1366/" data-label="Facebook" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip facebook" title="Share on Facebook"><i class="icon-facebook" ></i></a>
-    <a href="//twitter.com/share?url=https://mdbuddy.vn/product/bo-5-day-tap-the-duc-dan-hoi-chinh-hang-mdbuddy-md1366/" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip twitter" title="Share on Twitter"><i class="icon-twitter" ></i></a>
-    <a href="mailto:enteryour@addresshere.com?subject=B%E1%BB%99%205%20d%C3%A2y%20t%E1%BA%ADp%20th%E1%BB%83%20d%E1%BB%A5c%20%C4%91%C3%A0n%20h%E1%BB%93i%20ch%C3%ADnh%20h%C3%A3ng%20MDBuddy%20MD1366&amp;body=Check%20this%20out:%20https://mdbuddy.vn/product/bo-5-day-tap-the-duc-dan-hoi-chinh-hang-mdbuddy-md1366/" rel="nofollow" class="icon button circle is-outline tooltip email" title="Email to a Friend"><i class="icon-envelop" ></i></a>
-    <a href="//pinterest.com/pin/create/button/?url=https://mdbuddy.vn/product/bo-5-day-tap-the-duc-dan-hoi-chinh-hang-mdbuddy-md1366/&amp;media=https://mdbuddy.vn/home/wp-content/uploads/2018/09/bo-5-day-tap-the-duc-dan-hoi-12.jpg&amp;description=B%E1%BB%99%205%20d%C3%A2y%20t%E1%BA%ADp%20th%E1%BB%83%20d%E1%BB%A5c%20%C4%91%C3%A0n%20h%E1%BB%93i%20ch%C3%ADnh%20h%C3%A3ng%20MDBuddy%20MD1366" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip pinterest" title="Pin on Pinterest"><i class="icon-pinterest" ></i></a>
-    <a href="//plus.google.com/share?url=https://mdbuddy.vn/product/bo-5-day-tap-the-duc-dan-hoi-chinh-hang-mdbuddy-md1366/" target="_blank" class="icon button circle is-outline tooltip google-plus" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" title="Share on Google+"><i class="icon-google-plus" ></i></a>
-    <a href="//www.linkedin.com/shareArticle?mini=true&url=https://mdbuddy.vn/product/bo-5-day-tap-the-duc-dan-hoi-chinh-hang-mdbuddy-md1366/&title=B%E1%BB%99%205%20d%C3%A2y%20t%E1%BA%ADp%20th%E1%BB%83%20d%E1%BB%A5c%20%C4%91%C3%A0n%20h%E1%BB%93i%20ch%C3%ADnh%20h%C3%A3ng%20MDBuddy%20MD1366" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;"  rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip linkedin" title="Share on LinkedIn"><i class="icon-linkedin" ></i></a></div>
+    <a href="//www.facebook.com/sharer.php?u=http://cafebip.com/chi-tiet/diem-trung-tuyen-dai-hoc-ha-noi-he-chinh-quy-nam-2019" data-label="Facebook" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip facebook" title="Share on Facebook"><i class="icon-facebook" ></i></a>
+    <a href="//twitter.com/share?url=http://cafebip.com/chi-tiet/diem-trung-tuyen-dai-hoc-ha-noi-he-chinh-quy-nam-2019" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip twitter" title="Share on Twitter"><i class="icon-twitter" ></i></a>
+    <a href="mailto:enteryour@addresshere.com?subject=B%E1%BB%99%205%20d%C3%A2y%20t%E1%BA%ADp%20th%E1%BB%83%20d%E1%BB%A5c%20%C4%91%C3%A0n%20h%E1%BB%93i%20ch%C3%ADnh%20h%C3%A3ng%20MDBuddy%20MD1366&amp;body=Check%20this%20out:%20http://cafebip.com/chi-tiet/diem-trung-tuyen-dai-hoc-ha-noi-he-chinh-quy-nam-2019" rel="nofollow" class="icon button circle is-outline tooltip email" title="Email to a Friend"><i class="icon-envelop" ></i></a>
+    <a href="//pinterest.com/pin/create/button/?url=http://cafebip.com/chi-tiet/diem-trung-tuyen-dai-hoc-ha-noi-he-chinh-quy-nam-2019&amp;media=https://mdbuddy.vn/home/wp-content/uploads/2018/09/bo-5-day-tap-the-duc-dan-hoi-12.jpg&amp;description=B%E1%BB%99%205%20d%C3%A2y%20t%E1%BA%ADp%20th%E1%BB%83%20d%E1%BB%A5c%20%C4%91%C3%A0n%20h%E1%BB%93i%20ch%C3%ADnh%20h%C3%A3ng%20MDBuddy%20MD1366" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip pinterest" title="Pin on Pinterest"><i class="icon-pinterest" ></i></a>
+    <a href="//plus.google.com/share?url=http://cafebip.com/chi-tiet/diem-trung-tuyen-dai-hoc-ha-noi-he-chinh-quy-nam-2019" target="_blank" class="icon button circle is-outline tooltip google-plus" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" title="Share on Google+"><i class="icon-google-plus" ></i></a>
+    <a href="//www.linkedin.com/shareArticle?mini=true&url=http://cafebip.com/chi-tiet/diem-trung-tuyen-dai-hoc-ha-noi-he-chinh-quy-nam-2019/&title=B%E1%BB%99%205%20d%C3%A2y%20t%E1%BA%ADp%20th%E1%BB%83%20d%E1%BB%A5c%20%C4%91%C3%A0n%20h%E1%BB%93i%20ch%C3%ADnh%20h%C3%A3ng%20MDBuddy%20MD1366" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;"  rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip linkedin" title="Share on LinkedIn"><i class="icon-linkedin" ></i></a></div>
   		</div><!-- .summary -->
 
 

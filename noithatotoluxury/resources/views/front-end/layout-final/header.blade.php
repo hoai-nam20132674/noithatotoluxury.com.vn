@@ -115,7 +115,7 @@
 			                  $content = Cart::getContent();
 			                @endphp
 
-							<a href="https://mdbuddy.vn/cart/" title="Giỏ hàng" class="header-cart-link is-small">
+							<a href="cart" title="Giỏ hàng" class="header-cart-link is-small">
 								<span class="image-icon header-cart-icon cartCount" cart-count="{{$totalQuantity}}" data-icon-label="{{$totalQuantity}}">
 							    	<img class="cart-img-icon" alt="Giỏ hàng" src="https://mdbuddy.vn/home/wp-content/uploads/2018/06/shopping-cart.png"/>
 							  	</span><!-- .cart-img-inner -->
@@ -135,8 +135,8 @@
 				<div class="flex-col show-for-medium flex-right">
 					<ul class="mobile-nav nav nav-right ">
 						<li class="cart-item has-icon">
-							<a href="https://mdbuddy.vn/cart/" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup" data-class="off-canvas-cart" title="Giỏ hàng" data-pos="right">
-								<span class="image-icon header-cart-icon" data-icon-label="1">
+							<a href="cart" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup" data-class="off-canvas-cart" title="Giỏ hàng" data-pos="right">
+								<span class="image-icon header-cart-icon cartCount" cart-count="{{$totalQuantity}}" data-icon-label="{{$totalQuantity}}">
 									<img class="cart-img-icon" alt="Giỏ hàng" src="https://mdbuddy.vn/home/wp-content/uploads/2018/06/shopping-cart.png"/> 
 								</span><!-- .cart-img-inner -->
 							</a>
@@ -152,17 +152,31 @@
 								    <div class="widget_shopping_cart_content">
 								          
 
-										<ul class="woocommerce-mini-cart cart_list product_list_widget ">
-											<li class="woocommerce-mini-cart-item mini_cart_item">
-												<a href="https://mdbuddy.vn/cart/?remove_item=1e9f65024cd764a33b94a14b0e79f42d&#038;_wpnonce=4ec777f312" class="remove remove_from_cart_button" aria-label="Xóa sản phẩm này" data-product_id="7084" data-cart_item_key="1e9f65024cd764a33b94a14b0e79f42d" data-product_sku="MD1366">&times;</a>
-												<a href="https://mdbuddy.vn/product/bo-5-day-tap-the-duc-dan-hoi-chinh-hang-mdbuddy-md1366/">
-													<img width="250" height="250" src="https://mdbuddy.vn/home/wp-content/uploads/2018/09/bo-5-day-tap-the-duc-dan-hoi-12-250x250.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="https://mdbuddy.vn/home/wp-content/uploads/2018/09/bo-5-day-tap-the-duc-dan-hoi-12-250x250.jpg 250w, https://mdbuddy.vn/home/wp-content/uploads/2018/09/bo-5-day-tap-the-duc-dan-hoi-12-150x150.jpg 150w, https://mdbuddy.vn/home/wp-content/uploads/2018/09/bo-5-day-tap-the-duc-dan-hoi-12-300x300.jpg 300w, https://mdbuddy.vn/home/wp-content/uploads/2018/09/bo-5-day-tap-the-duc-dan-hoi-12-768x768.jpg 768w, https://mdbuddy.vn/home/wp-content/uploads/2018/09/bo-5-day-tap-the-duc-dan-hoi-12-510x510.jpg 510w, https://mdbuddy.vn/home/wp-content/uploads/2018/09/bo-5-day-tap-the-duc-dan-hoi-12-100x100.jpg 100w, https://mdbuddy.vn/home/wp-content/uploads/2018/09/bo-5-day-tap-the-duc-dan-hoi-12.jpg 900w" sizes="(max-width: 250px) 100vw, 250px" />Bộ 5 dây tập thể dục đàn hồi chính hãng MDBuddy MD1366</a>
-												<span class="quantity">1 &times; <span class="woocommerce-Price-amount amount">899.000<span class="woocommerce-Price-currencySymbol">&#8363;</span></span></span>
-											</li>
+										<ul class="woocommerce-mini-cart cart_list product_list_widget list-item-cart">
+											@foreach($content as $item)
+											  	@php
+												    $products_properties = App\ProductsProperties::where('products_detail_id',$item->id)->get();
+												    $properties_id = App\Http\Controllers\AuthClient\ClientController::arrayColumn($products_properties,$col='properties_id');
+												    $properties = App\Properties::join('properties_type','properties.properties_type_id','=','properties_type.id')->whereIn('properties.id',$properties_id)->select('properties.*','properties_type.name')->get();
+											    
+												@endphp
+												<li class="woocommerce-mini-cart-item mini_cart_item item product-cart" data-id="{{$item->id}}">
+													<a href="" data-id="{{$item->id}}" class="remove remove_from_cart_button remove-item-cart" aria-label="Xóa sản phẩm này" price="{{$item->price*$item->quantity}}">&times;</a>
+													<a href="{{$item->attributes->url}}">
+														<img width="250" height="250" src="{{asset('uploads/images/products/avatar/'.$item->attributes->img)}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="{{$item->name}}" sizes="(max-width: 250px) 100vw, 250px" />{{$item->name}} @foreach($properties as $pp) {{$pp->name}} {{$pp->value}},@endforeach</a>
+													<span data-id="{{$item->id}}" value="{{$item->quantity}}" class="quantity">{{$item->quantity}}<span class="woocommerce-Price-amount amount"> &times; {!!number_format($item->price)!!}<span class="woocommerce-Price-currencySymbol">&#8363;</span></span></span>
+												</li>
+											@endforeach
 										</ul>
 
-										<p class="woocommerce-mini-cart__total total"><strong>Tổng phụ:</strong> <span class="woocommerce-Price-amount amount">899.000<span class="woocommerce-Price-currencySymbol">&#8363;</span></span></p>
-										<p class="woocommerce-mini-cart__buttons buttons"><a href="https://mdbuddy.vn/cart/" class="button wc-forward">Xem giỏ hàng</a><a href="https://mdbuddy.vn/checkout/" class="button checkout wc-forward">Thanh toán</a></p>
+										<p class="woocommerce-mini-cart__total total">
+											<strong>Tổng phụ:</strong>
+											<span class="woocommerce-Price-amount amount price totalPrice" price="{{Cart::getTotal()}}">{!!number_format(Cart::getTotal())!!}<span class="woocommerce-Price-currencySymbol">&#8363;</span></span>
+										</p>
+										<p class="woocommerce-mini-cart__buttons buttons">
+											<a href="https://mdbuddy.vn/cart/" class="button wc-forward">Xem giỏ hàng</a>
+											<a href="https://mdbuddy.vn/checkout/" class="button checkout wc-forward">Thanh toán</a>
+										</p>
 								    </div>
 								    <div class="cart-sidebar-content relative"></div>
 								</div>

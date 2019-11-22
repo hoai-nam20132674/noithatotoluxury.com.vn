@@ -32,6 +32,7 @@ class ClientController extends Controller
     public function index(){
     	$system = Systems::where('id',1)->get()->first();
         $cates = Categories::where('systems_id',$system->id)->where('display',1)->get();
+        $cates_highlight = Categories::where('display',1)->where('highlights',1)->get();
         // $cate_highlights = Categories::where('systems_id',$system->id)->where('display',1)->where('highlights',1)->orderBy('updated_at', 'ASC')->get();
         // $cateRoot = array();
         // $x = 0;
@@ -126,7 +127,7 @@ class ClientController extends Controller
 
         // $products_news = $this->paginateCustum($products_news, $perPage = 60, $page = null, $options = []);
         //end lọc sản phẩm nổi bật thuộc các danh mục đã chọn ra trả về mảng 2 chiều x,y. x là danh mục, y là sản phẩm
-    	return view('front-end.page-content.home',['system'=>$system,'cates'=>$cates,'products_highlight'=>$products_highlight]);
+    	return view('front-end.page-content.home',['system'=>$system,'cates'=>$cates,'products_highlight'=>$products_highlight,'cates_highlight'=>$cates_highlight]);
         
         
         
@@ -353,7 +354,7 @@ class ClientController extends Controller
             $system = Systems::where('id',1)->get()->first();
             $cates = Categories::where('systems_id',1)->where('display',1)->get();
             $products = Products::join('images_products', 'products.id', '=', 'images_products.products_id')->join('products_detail', 'products.id', '=', 'products_detail.products_id')->where('products.url',$url)->where('images_products.role',1)
-            ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id')
+            ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id','products_detail.id AS products_detail_id')
             ->get();
             $productsGroup = $this->groupProduct($products);
             $products = $this->filterProduct($productsGroup);
