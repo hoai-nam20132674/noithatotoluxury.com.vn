@@ -81,6 +81,10 @@
 										<input type="text" class="form-control" name="seo_description" placeholder="Description Seo" value="{{old('seo_description')}}" required >
 									</div>
 									<div class="form-group">
+										<label for="exampleInputEmail1">Video</label>
+										<input type="text" class="form-control" name="video" placeholder="video-youtube" value="{{old('video')}}">
+									</div>
+									<div class="form-group">
 										<label>Danh mục sản phẩm</label>
 										<select class="form-control" name="categories_id">
 											@foreach($category as $cate)
@@ -146,15 +150,20 @@
 									            
 									       	</div>
 									       	<div class="price_amount">
-									       		<div class="form-group" style="width: 50%; float: left; position: relative; padding: 0px 10px;">
+									       		<div class="form-group" style="width: 33%; float: left; position: relative; padding: 0px 10px;">
 													<!-- <label for="exampleInputEmail1">Số lượng</label> -->
 													<span class="tag tag-danger btn btn-danger" style="position: absolute; top: 0px; left: 10px; width: 60px; height: 31px; padding: 10px 0px;">SỐ LƯỢNG</span>
 													<input style="padding-left: 70px;" type="number" class="form-control" name="amount[]" placeholder="" value="{{old('amount[]')}}" required>
 												</div>
-												<div class="form-group" style="width: 50%; float: right; position: relative; padding: 0px 10px;">
+												<div class="form-group" style="width: 33%; float: left; position: relative; padding: 0px 10px;">
 													<!-- <label for="exampleInputEmail1">Số lượng</label> -->
 													<span class="tag tag-danger btn btn-danger" style="position: absolute; top: 0px; left: 10px; width: 60px; height: 31px; padding: 10px 0px;">GIÁ</span>
 													<input style="padding-left: 70px;" type="number" class="form-control" name="price[]" placeholder="" value="{{old('price[]')}}" required>
+												</div>
+												<div class="form-group" style="width: 33%; float: left; position: relative; padding: 0px 10px;">
+													<!-- <label for="exampleInputEmail1">Số lượng</label> -->
+													<span class="tag tag-danger btn btn-danger" style="position: absolute; top: 0px; left: 10px; width: 60px; height: 31px; padding: 10px 0px;">Giá Sale</span>
+													<input style="padding-left: 70px;" type="number" class="form-control" name="sale[]" placeholder="" value="{{old('sale[]')}}">
 												</div>
 									       	</div>
 								       </div>
