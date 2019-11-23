@@ -38,15 +38,15 @@
 					@php
 	                  $totalQuantity = Cart::getTotalQuantity();
 	                  $content = Cart::getContent();
+	                  $i=0;
 	                @endphp
 	                @foreach($content as $item)
 		                @php
 						    $products_properties = App\ProductsProperties::where('products_detail_id',$item->id)->get();
 						    $properties_id = App\Http\Controllers\AuthClient\ClientController::arrayColumn($products_properties,$col='properties_id');
 						    $properties = App\Properties::join('properties_type','properties.properties_type_id','=','properties_type.id')->whereIn('properties.id',$properties_id)->select('properties.*','properties_type.name')->get();
-					    
 						@endphp
-						<tr class="woocommerce-cart-form__cart-item cart_item product-cart" data-id="{{$item->id}}">
+						<tr class="woocommerce-cart-form__cart-item cart_item product-cart" item-number="{{$i}}" data-id="{{$item->id}}">
 							<td class="product-remove">
 								<a href="" data-id="{{$item->id}}" class="remove remove-item-cart" aria-label="Xóa sản phẩm này" price="{{$item->price*$item->quantity}}">&times;</a>
 							</td>
@@ -69,10 +69,10 @@
 
 							<td class="product-quantity" data-title="Số lượng">
 								<div class="quantity buttons_added">
-									<input type="button" value="-" class="minus button is-form">
+									<input type="button" data-id="{{$item->id}}" value="-" id="minus" class="minus button is-form">
 									<label class="screen-reader-text" for="quantity_5dbd598f143fc">Số lượng</label>
-									<input type="number" data-id="{{$item->id}}" class="input-text qty text quantity" step="1" min="0" max="9999" name="" old-value="{{$item->quantity}}" value="{{$item->quantity}}" title="SL" size="4" pattern="[0-9]*" inputmode="numeric" >
-									<input type="button" value="+" class="plus button is-form">
+									<input type="number" data-id="{{$item->id}}" class="input-text qty text quantity" step="1" min="0" max="9999" new-value="{{$item->quantity}}" value="{{$item->quantity}}" title="SL" size="4" pattern="[0-9]*" inputmode="numeric" >
+									<input type="button" data-id="{{$item->id}}" value="+" id="plus" class="plus button is-form">
 								</div>
 							</td>
 
@@ -83,6 +83,9 @@
 								<span class="woocommerce-Price-amount amount">{!!number_format($total_line)!!}<span class="woocommerce-Price-currencySymbol">₫</span></span>
 							</td>
 						</tr>
+						<?php
+							$i++;
+						?>
 					@endforeach
 
 					<tr>
