@@ -71,7 +71,7 @@
 								<div class="quantity buttons_added">
 									<input type="button" data-id="{{$item->id}}" value="-" id="minus" class="minus button is-form">
 									<label class="screen-reader-text" for="quantity_5dbd598f143fc">Số lượng</label>
-									<input type="number" data-id="{{$item->id}}" class="input-text qty text quantity" step="1" min="0" max="9999" new-value="{{$item->quantity}}" value="{{$item->quantity}}" title="SL" size="4" pattern="[0-9]*" inputmode="numeric" >
+									<input type="number" data-id="{{$item->id}}" class="input-text qty text quantity" step="1" min="0" max="9999" old-value ="{{$item->quantity}}"value="{{$item->quantity}}" title="SL" size="4" pattern="[0-9]*" inputmode="numeric" >
 									<input type="button" data-id="{{$item->id}}" value="+" id="plus" class="plus button is-form">
 								</div>
 							</td>

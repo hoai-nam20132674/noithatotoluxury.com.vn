@@ -35,6 +35,7 @@ Route::get('account/{id}',['as'=>'account','uses'=>'AuthClient\ClientController@
 Route::get('order/{id}',['as'=>'order','uses'=>'AuthClient\ClientController@order']);
 Route::get('cart',['as'=>'cart','uses'=>'AuthClient\ClientController@cart']);
 Route::get('check-add-to-cart/{url}',['as'=>'checkAddToCart','uses'=>'AuthClient\ClientController@checkAddToCart']);
+Route::get('check-product-detail/{id}-{quantity}',['as'=>'checkProductDetail','uses'=>'AuthClient\ClientController@checkProductDetail']);
 Route::get('check-count-properties/{products_detail_id}',['as'=>'checkCountProperties','uses'=>'AuthClient\ClientController@checkCountProperties']);
 Route::get('add-to-cart/{id}-{quantity}',['as'=>'addToCart','uses'=>'AuthClient\ClientController@addToCart']);
 Route::get('remove-cart-item/{id}',['as'=>'removeCartItem','uses'=>'AuthClient\ClientController@removeCartItem']);

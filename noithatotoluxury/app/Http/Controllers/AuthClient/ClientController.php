@@ -749,6 +749,19 @@ class ClientController extends Controller
         // dd($order_details);
             
     }
+    public function checkProductDetail($id,$quantity){
+        $product_detail = ProductsDetail::where('id',$id)->get()->first();
+        if($product_detail->amount < $quantity){
+            echo "không đủ hàng";
+        }
+        else if($quantity ==0){
+            echo "không là gì cả";
+        }
+        else {
+            echo "đủ hàng";
+        }
+
+    }
     public function checkAddToCart($url){
         // tách chuỗi từ url truyền về lấy ra mảng các thuộc tính của sản phẩm đặt hàng
         $string = $url;
@@ -859,10 +872,27 @@ class ClientController extends Controller
     public function addToCart($id,$quantity){
         // $products_detail = ProductsDetail::where('id',$id)->get()->first();
         $products_detail = Products::join('images_products', 'products.id', '=', 'images_products.products_id')->join('products_detail', 'products.id', '=', 'products_detail.products_id')->where('products_detail.id',$id)->where('images_products.role',1)->select('products_detail.*','images_products.url AS avatar','products.name','products.url')->get()->first();
-        Cart::add(array('id'=>$products_detail->id,'name'=>$products_detail->name,'quantity'=>$quantity,'price'=>$products_detail->price,'attributes'=>array('img'=>$products_detail->avatar,'url'=>$products_detail->url)));
-        // $products_detail = ProductsDetail::where('id',$id)->get()->first();
-        // $products_detail->amount = $products_detail->amount - $quantity;
-        // $products_detail->save();
+        if($products_detail->amount >= $quantity && $quantity >0){
+            Cart::add(array('id'=>$products_detail->id,'name'=>$products_detail->name,'quantity'=>$quantity,'price'=>$products_detail->price,'attributes'=>array('img'=>$products_detail->avatar,'url'=>$products_detail->url)));
+            // $products_detail = ProductsDetail::where('id',$id)->get()->first();
+            // $products_detail->amount = $products_detail->amount - $quantity;
+            // $products_detail->save();
+            echo "cart::add";
+            
+        }
+        else if($products_detail->amount >= $quantity && $quantity <0){
+            Cart::update($products_detail->id, array(
+              'quantity' => $quantity,
+            ));
+            echo "cart::update";
+        }
+        else if($quantity ==0){
+            Cart::remove($products_detail->id);
+            echo "cart::remove";
+        }
+        else {
+            echo "không làm gì cả";
+        }
     }
     public function removeCartItem($id){
         Cart::remove($id);
