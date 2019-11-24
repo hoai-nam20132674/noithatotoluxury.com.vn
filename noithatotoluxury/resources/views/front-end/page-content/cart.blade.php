@@ -144,7 +144,7 @@
 
 			<div class="wc-proceed-to-checkout">
 				
-		<a href="https://mdbuddy.vn/checkout/" class="checkout-button button alt wc-forward">
+		<a href="checkout" class="checkout-button button alt wc-forward">
 			Tiến hành thanh toán</a>
 			</div>
 

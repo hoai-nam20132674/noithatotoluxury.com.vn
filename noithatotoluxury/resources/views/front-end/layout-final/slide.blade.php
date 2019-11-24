@@ -7,89 +7,17 @@
 						<!-- START REVOLUTION SLIDER 5.4.7.3 fullwidth mode -->
 						<div id="rev_slider_1_1" class="rev_slider fullwidthabanner tp-overflow-hidden" style="display:none;" data-version="5.4.7.3">
 							<ul>	<!-- SLIDE  -->
-								<li data-index="rs-1" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="https://mdbuddy.vn/home/wp-content/uploads/2018/07/banner_1-1-100x50.png"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+								@foreach($slides as $slide)
+								<li data-index="{{$slide->id}}" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="https://mdbuddy.vn/home/wp-content/uploads/2018/07/banner_1-1-100x50.png"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
 									<!-- MAIN IMAGE -->
-									<img src="https://mdbuddy.vn/home/wp-content/plugins/revslider/admin/assets/images/dummy.png"  alt="" title="banner_1"  width="2184" height="788" data-lazyload="https://mdbuddy.vn/home/wp-content/uploads/2018/07/banner_1-1.png" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
+									<img src="{{asset('uploads/images/systems/slides/'.$slide->url_image)}}"  alt="" title="banner_1"  width="2184" height="788" data-lazyload="{{asset('uploads/images/systems/slides/'.$slide->url_image)}}" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
 									<!-- LAYERS -->
 
-									<!-- LAYER NR. 1 -->
-									<div class="tp-caption   tp-resizeme" 
-										id="slide-1-layer-1" 
-										data-x="['left','left','left','left']"
-										data-hoffset="['65','65','65','0']" 
-										data-y="['top','top','top','top']"
-										data-voffset="['252','252','252','171']" 
-										data-width="none"
-										data-height="none"
-										data-whitespace="nowrap"
-										data-type="image" 
-										data-responsive_offset="on" 
-										data-frames='[{"delay":0,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-										data-textAlign="['inherit','inherit','inherit','inherit']"
-										data-paddingtop="[0,0,0,0]"
-										data-paddingright="[0,0,0,0]"
-										data-paddingbottom="[0,0,0,0]"
-										data-paddingleft="[0,0,0,0]"
-
-										style="z-index: 5;">
-										<img src="https://mdbuddy.vn/home/wp-content/plugins/revslider/admin/assets/images/dummy.png" alt="" data-ww="['394px','394px','394px','374px']" data-hh="['195px','195px','195px','185px']" width="645" height="319" data-lazyload="https://mdbuddy.vn/home/wp-content/uploads/2018/07/Artboard-28.png" data-no-retina>
-										
-									</div>
+									
 								</li>
 								<!-- SLIDE  -->
-								<li data-index="rs-2" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="https://mdbuddy.vn/home/wp-content/uploads/2018/07/banner_2-2-100x50.png"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-									<!-- MAIN IMAGE -->
-									<img src="https://mdbuddy.vn/home/wp-content/plugins/revslider/admin/assets/images/dummy.png"  alt="" title="banner_2"  width="2190" height="792" data-lazyload="https://mdbuddy.vn/home/wp-content/uploads/2018/07/banner_2-2.png" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
-									<!-- LAYERS -->
-
-									<!-- LAYER NR. 2 -->
-									<div class="tp-caption   tp-resizeme" 
-										 id="slide-2-layer-1" 
-										 data-x="['left','left','left','left']" data-hoffset="['606','475','329','107']" 
-										 data-y="['top','top','top','top']" data-voffset="['142','128','138','113']" 
-													data-width="none"
-										data-height="none"
-										data-whitespace="nowrap"
-							 
-										data-type="image" 
-										data-responsive_offset="on" 
-
-										data-frames='[{"delay":0,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-										data-textAlign="['inherit','inherit','inherit','inherit']"
-										data-paddingtop="[0,0,0,0]"
-										data-paddingright="[0,0,0,0]"
-										data-paddingbottom="[0,0,0,0]"
-										data-paddingleft="[0,0,0,0]"
-
-										style="z-index: 5;"><img src="https://mdbuddy.vn/home/wp-content/plugins/revslider/admin/assets/images/dummy.png" alt="" data-ww="['548px','548px','410px','368px']" data-hh="['376px','376px','281px','252px']" width="836" height="573" data-lazyload="https://mdbuddy.vn/home/wp-content/uploads/2018/07/Artboard-30.png" data-no-retina> </div>
-								</li>
-								<!-- SLIDE  -->
-								<li data-index="rs-6" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="https://mdbuddy.vn/home/wp-content/uploads/2018/07/BANNER-100x50.png"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-									<!-- MAIN IMAGE -->
-									<img src="https://mdbuddy.vn/home/wp-content/plugins/revslider/admin/assets/images/dummy.png"  alt="" title="BANNER"  width="2190" height="792" data-lazyload="https://mdbuddy.vn/home/wp-content/uploads/2018/07/BANNER.png" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
-									<!-- LAYERS -->
-
-									<!-- LAYER NR. 3 -->
-									<div class="tp-caption   tp-resizeme" 
-										 id="slide-6-layer-5" 
-										 data-x="['left','left','left','left']" data-hoffset="['686','572','384','161']" 
-										 data-y="['top','top','top','top']" data-voffset="['266','265','278','139']" 
-													data-width="none"
-										data-height="none"
-										data-whitespace="nowrap"
-							 
-										data-type="image" 
-										data-responsive_offset="on" 
-
-										data-frames='[{"delay":0,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-										data-textAlign="['inherit','inherit','inherit','inherit']"
-										data-paddingtop="[0,0,0,0]"
-										data-paddingright="[0,0,0,0]"
-										data-paddingbottom="[0,0,0,0]"
-										data-paddingleft="[0,0,0,0]"
-
-										style="z-index: 6;"><img src="https://mdbuddy.vn/home/wp-content/plugins/revslider/admin/assets/images/dummy.png" alt="" data-ww="['507px','449px','415px','325px']" data-hh="['254px','225px','208px','163px']" width="799" height="400" data-lazyload="https://mdbuddy.vn/home/wp-content/uploads/2018/12/Artboard-36.png" data-no-retina> </div>
-								</li>
+								@endforeach
+								
 							</ul>
 							<script>var htmlDiv = document.getElementById("rs-plugin-settings-inline-css"); var htmlDivCss="";
 								if(htmlDiv) {

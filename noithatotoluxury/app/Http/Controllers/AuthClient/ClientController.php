@@ -18,6 +18,9 @@ use App\Orders;
 use App\OrdersDetail;
 use App\UsersClient;
 use App\Feedbacks;
+use App\Blogs;
+use App\Slides;
+use App\Menus;
 use App\Http\Requests\addUserClientRequest;
 use App\Http\Controllers\AuthClient\LoginController;
 use Cart;
@@ -33,101 +36,17 @@ class ClientController extends Controller
     	$system = Systems::where('id',1)->get()->first();
         $cates = Categories::where('systems_id',$system->id)->where('display',1)->get();
         $cates_highlight = Categories::where('display',1)->where('highlights',1)->get();
-        // $cate_highlights = Categories::where('systems_id',$system->id)->where('display',1)->where('highlights',1)->orderBy('updated_at', 'ASC')->get();
-        // $cateRoot = array();
-        // $x = 0;
-        // for($i=0;$i<count($cates);$i++){
-        //     if($cates[$i]->id == $cates[$i]->parent_id){
-        //         $cateRoot[$x]=$cates[$i];
-        //         $x++;
-        //     }
-        //     else{}
-        // }
-        // $cates = $cateRoot;
+        $blogs = Blogs::where('display',1)->orderBy('id','ASC')->take(4)->get();
+        $slides = Slides::select()->get();
+        $menus = Menus::select()->get();
         $cate = $this->arrayColumn($cates,$col='id');
         $products_highlight = Products::join('images_products', 'products.id', '=', 'images_products.products_id')->join('products_detail', 'products.id', '=', 'products_detail.products_id')->where('products.display',1)->where('products.highlights',1)->where('images_products.role',1)->orderBy('products.updated_at', 'DESC')
             ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id','products_detail.id AS products_detail_id')
             ->get();
         $productsGroup = $this->groupProduct($products_highlight);
         $products_highlight = $this->filterProduct($productsGroup);
-        
-        
-        // lấy ds sản phẩm thuộc gian hàng được người dùng follow
-        // $system_follow = array();
-        // $products_recommend = array();
-        // if(Auth::guard('users_client')->check()){
-        //     $system_follow = FollowSystems::where('users_clients_id',Auth::guard('users_client')->user()->id)->get();
-        //     $systemsId = $this->arrayColumn($system_follow,$col='systems_id');
-        //     $system_follow = Systems::whereIn('id',$systemsId)->get();
-            
-        //     for($i=0;$i<count($systemsId);$i++){
-        //         $array = Categories::where('systems_id',$systemsId[$i])->where('display',1)->get();
-        //         $array = $this->arrayColumn($array,$col='id');
-        //         $product = Products::join('images_products', 'products.id', '=', 'images_products.products_id')->join('products_detail', 'products.id', '=', 'products_detail.products_id')->whereIn('products.categories_id',$array)->where('products.display',1)->where('images_products.role',1)
-        //             ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id')->orderBy('products.id', 'DESC')
-        //             ->get();
-        //         $productsGroup = $this->groupProduct($product);
-        //         $product = $this->filterProduct($productsGroup);
-        //         if(count($product)==0){
-        //             $products_recommend[$i][0]=null;
-        //         }
-        //         elseif(count($product)>10){
-        //             for($j=0;$j<10;$j++){
-        //                 $products_recommend[$i][$j]=$product[$j];
-        //             }
-        //         }
-        //         else{
-                    
-        //             $products_recommend[$i]=$product;
-                    
-        //         }
 
-        //     }
-            
-        // }
-        //end lấy ds sản phẩm thuộc gian hàng được người dùng follow
-        // --------------------------
-        // lọc sản phẩm nổi bật thuộc các danh mục đã chọn ra trả về mảng 2 chiều x,y. x là danh mục, y là sản phẩm
-        
-        // $systems_highlights = Systems::where('highlights',1)->orderBy('updated_at','DESC')->get();
-        // $products_highlights = array();
-        // for($i=0;$i<count($systems_highlights);$i++){
-        //     $cate_system = Categories::where('systems_id',$systems_highlights[$i]->id)->get();
-        //     $cate_system_id = $this->arrayColumn($cate_system,$col='id');
-        //     $product = Products::join('images_products', 'products.id', '=', 'images_products.products_id')->join('products_detail', 'products.id', '=', 'products_detail.products_id')->whereIn('products.categories_id',$cate_system_id)->where('products.display',1)->where('images_products.role',1)
-        //     ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id')->orderBy('products.id', 'DESC')
-        //     ->get();
-        //     $productsGroup = $this->groupProduct($product);
-        //     $product = $this->filterProduct($productsGroup);
-        //     if(count($product)==0){
-        //         $products_highlights[$i][0]=null;
-
-        //     }
-        //     elseif(count($product)>10){
-        //         for($j=0;$j<10;$j++){
-        //             $products_highlights[$i][$j]=$product[$j];
-        //         }
-        //     }
-        //     else{
-        //         for($j=0;$j<count($product);$j++){
-        //             $products_highlights[$i][$j]=$product[$j];
-        //         }
-        //     }
-            
-        // }
-        // lọc sản phẩm nổi bật thuộc các gian hàng nổi bật đã chọn ra trả về mảng 2 chiều x,y. x là danh mục, y là sản phẩm
-        // -----------------------------
-        // $cate_news = array();
-        // $products_news = Products::join('images_products', 'products.id', '=', 'images_products.products_id')->join('products_detail', 'products.id', '=', 'products_detail.products_id')->where('products.display',1)->where('images_products.role',1)
-        //     ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id')->orderBy('products.id', 'DESC')
-        //     ->get();
-        // $products_news = $this->groupProduct($products_news);
-        // $products_news = $this->filterProduct($products_news);
-        // $products_news = collect($products_news);
-
-        // $products_news = $this->paginateCustum($products_news, $perPage = 60, $page = null, $options = []);
-        //end lọc sản phẩm nổi bật thuộc các danh mục đã chọn ra trả về mảng 2 chiều x,y. x là danh mục, y là sản phẩm
-    	return view('front-end.page-content.home',['system'=>$system,'cates'=>$cates,'products_highlight'=>$products_highlight,'cates_highlight'=>$cates_highlight]);
+    	return view('front-end.page-content.home',['system'=>$system,'cates'=>$cates,'products_highlight'=>$products_highlight,'cates_highlight'=>$cates_highlight,'blogs'=>$blogs,'slides'=>$slides,'menus'=>$menus]);
         
         
         
@@ -749,6 +668,15 @@ class ClientController extends Controller
         // dd($order_details);
             
     }
+    public function checkout(){
+        
+        $items = Cart::getContent();
+        $system = Systems::where('id',1)->get()->first();
+        
+        return view('front-end.page-content.checkout',['system'=>$system,'items'=>$items]);
+        // dd($order_details);
+            
+    }
     public function checkProductDetail($id,$quantity){
         $product_detail = ProductsDetail::where('id',$id)->get()->first();
         if($product_detail->amount < $quantity){
@@ -1017,6 +945,10 @@ class ClientController extends Controller
         }
 
     }
+    // public function orderStatus($id){
+    //     $order = Orders::where('id',$id)->get()->first();
+    //     $orders_line = OrdersDetail::where('order_id')
+    // }
     public function postAddFeedback(Request $request){
         $feedback = Feedbacks::where('products_id',$request->product_id)->where('users_id',$request->user_id)->get();
         if(count($feedback) ==0){

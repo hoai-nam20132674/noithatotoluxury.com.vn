@@ -47,7 +47,9 @@
 						<tr>
 							<td >{{$i++}}</td>	td>
 							<td>{{$slide->url}}</td>
-							<td></td>
+							<td>
+								<img width="30%" src="{{asset('uploads/images/systems/slides/'.$slide->url_image)}}">
+							</td>
 							<td class="text-center">
 								<a onclick="return confirmDelete('Bạn có chắc muốn xóa dịch vụ này không')" title="Xóa dịch vụ"><i class="ion-trash-a" style="width: 100%; font-size: 18px; color: red; margin-right: 5px;"></i></a>
 								<a href="{{ URL::route('editSlide',$slide->id)}}" title="Sửa slide"><i class="ion-compose" style="width: 100%; font-size: 18px;"></i></a>

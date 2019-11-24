@@ -43,26 +43,26 @@
 								</div>
 								<div class="col-md-9">
 									<div class="form-group">	
-										<input type="text" class="form-control" name="url" placeholder="Nhập Url" value="{{old('url')}}">
+										<input type="text" class="form-control" name="url" placeholder="Nhập Url" value="{{old('url')}}" required>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Tiêu đề</label>
-								<input type="text" class="form-control" name="title" placeholder="Nhập tiêu đề danh mục" value="{{old('title')}}">
+								<input type="text" class="form-control" name="title" placeholder="Nhập tiêu đề danh mục" value="{{old('title')}}" required>
 							</div>
 							
 							<div class="form-group">
 								<label for="exampleInputEmail1">Keywords</label>
-								<input type="text" class="form-control" name="seo_keyword" placeholder="Keywords Seo" value="{{old('seo_keyword')}}">
+								<input type="text" class="form-control" name="seo_keyword" placeholder="Keywords Seo" value="{{old('seo_keyword')}}" required>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Description</label>
-								<input type="text" class="form-control" name="seo_description" placeholder="Description Seo" value="{{old('seo_description')}}">
+								<input type="text" class="form-control" name="seo_description" placeholder="Description Seo" value="{{old('seo_description')}}" required>
 							</div>
 							<div class="form-group">
 								<label for="exampleTextarea">Nội dung</label>
-								<textarea class="form-control" name="content" >{{old('content')}}</textarea>
+								<textarea class="form-control" name="content" required >{{old('content')}}</textarea>
 								<script type="text/javascript">
 							      var editor = CKEDITOR.replace('content',{
 							       language:'vi',
@@ -75,14 +75,7 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<div class="form-group">
-								<select class="form-control" name="categorie_id">
-									
-									<option value="id">Categorie</option>
-									<option value="id">Categorie2</option>
-									
-								</select>
-							</div>
+							
 							<div class="checkbox">
 								<label>
 									<input type="radio" name="display" value="1" checked>Hiển thị
@@ -95,7 +88,7 @@
 							  	<!-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> -->
 								
 							  	<div class="image-upload-wrap image-upload-wrap0">
-								    <input class="file-upload-input file-upload-input0" type='file' name="image" onchange="readURL(this);" accept="image/*" />
+								    <input class="file-upload-input file-upload-input0" type='file' name="image" onchange="readURL(this);" accept="image/*" required/>
 								    <div class="drag-text">
 								      <h3>Ảnh đại diện </h3>
 								    </div>

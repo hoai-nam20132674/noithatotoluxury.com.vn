@@ -13,14 +13,14 @@
 				</div>
 				<div class="image-tools is-small top right show-on-hover"></div>
 				<div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>
-				<div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">
+				<div style="display: none;" class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">
 					<a class="quick-view" data-prod="7084" href="#quick-view">Xem nhanh</a>
 				</div>
 			</div><!-- box-image -->
 
 			<div class="box-text box-text-products">
 				<div class="title-wrapper">
-					<p class="name product-title title-head" data-id="{{$product->products_detail_id}}" title="{{$product->name}}"><a href="/{{$product->url}}">{!! \Illuminate\Support\Str::words($product->name, 4,'...')  !!}</a></p>
+					<p class="name product-title title-head" data-id="{{$product->products_detail_id}}" title="{{$product->name}}"><a href="/{{$product->url}}">{!! \Illuminate\Support\Str::words($product->name, 8,'...')  !!}</a></p>
 				</div>
 				<div class="price-wrapper">
 					<div class="container-rating">

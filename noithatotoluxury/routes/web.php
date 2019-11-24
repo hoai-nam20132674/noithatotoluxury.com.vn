@@ -32,8 +32,10 @@ Route::get('admin/auth/logout',['as'=>'logout','uses'=>'Auth\LoginController@log
 Route::post('/postLogin',['as'=>'postLogin','uses'=>'Auth\LoginController@postLogin']);
 
 Route::get('account/{id}',['as'=>'account','uses'=>'AuthClient\ClientController@account']);
+Route::get('order-status/{id}',['as'=>'orderStatus','uses'=>'AuthClient\ClientController@orderStatus']);
 Route::get('order/{id}',['as'=>'order','uses'=>'AuthClient\ClientController@order']);
 Route::get('cart',['as'=>'cart','uses'=>'AuthClient\ClientController@cart']);
+Route::get('checkout',['as'=>'checkout','uses'=>'AuthClient\ClientController@checkout']);
 Route::get('check-add-to-cart/{url}',['as'=>'checkAddToCart','uses'=>'AuthClient\ClientController@checkAddToCart']);
 Route::get('check-product-detail/{id}-{quantity}',['as'=>'checkProductDetail','uses'=>'AuthClient\ClientController@checkProductDetail']);
 Route::get('check-count-properties/{products_detail_id}',['as'=>'checkCountProperties','uses'=>'AuthClient\ClientController@checkCountProperties']);
@@ -67,41 +69,52 @@ Route::group(['prefix'=>'auth/admin','middleware'=>'auth'], function(){
 	Route::get('them-tai-khoan-quan-tri',['as'=>'addUser','uses'=>'Auth\AdminController@addUser']);
 	// Route::get('them-tai-khoan-nguoi-dung',['as'=>'addUserClient','uses'=>'Auth\AdminController@addUserClient']);
 	Route::get('them-san-pham',['as'=>'addProduct','uses'=>'Auth\AdminController@addProduct']);
+	Route::get('them-tin-tuc',['as'=>'addBlog','uses'=>'Auth\AdminController@addBlog']);
 	Route::get('them-danh-muc',['as'=>'addCategorie','uses'=>'Auth\AdminController@addCategorie']);
 	Route::get('them-he-thong',['as'=>'addSystem','uses'=>'Auth\AdminController@addSystem']);
 	Route::get('them-tag-danh-muc/{id}',['as'=>'addTagCategorie','uses'=>'Auth\AdminController@addTagCategorie']);
 	Route::get('them-slide',['as'=>'addSlide','uses'=>'Auth\AdminController@addSlide']);
+	Route::get('them-menu',['as'=>'addMenu','uses'=>'Auth\AdminController@addMenu']);
 	Route::get('them-thuoc-tinh',['as'=>'addPropertie','uses'=>'Auth\AdminController@addPropertie']);
 
 	Route::get('danh-sach-tai-khoan-quan-tri',['as'=>'listUsers','uses'=>'Auth\AdminController@listUsers']);
 	Route::get('danh-sach-tai-khoan-nguoi-dung',['as'=>'listUsersClient','uses'=>'Auth\AdminController@listUsersClient']);
 	Route::get('danh-sach-san-pham',['as'=>'listProducts','uses'=>'Auth\AdminController@listProducts']);
+	Route::get('danh-sach-tin-tuc',['as'=>'listBlogs','uses'=>'Auth\AdminController@listBlogs']);
 	Route::get('danh-sach-san-pham-chi-tiet/{id}',['as'=>'listProductsDetail','uses'=>'Auth\AdminController@listProductsDetail']);
 	Route::get('danh-sach-danh-muc',['as'=>'listCategories','uses'=>'Auth\AdminController@listCategories']);
 	Route::get('danh-sach-he-thong',['as'=>'listSystems','uses'=>'Auth\AdminController@listSystems']);
 	Route::get('danh-sach-slide',['as'=>'listSlides','uses'=>'Auth\AdminController@listSlides']);
+	Route::get('danh-sach-menu',['as'=>'listMenus','uses'=>'Auth\AdminController@listMenus']);
 	Route::get('danh-sach-don-hang',['as'=>'listOrder','uses'=>'Auth\AdminController@listOrder']);
 	Route::get('danh-sach-don-hang-chi-tiet/{id}',['as'=>'listOrderDetail','uses'=>'Auth\AdminController@listOrderDetail']);
 
 	Route::get('sua-tai-khoan-quan-tri/{id}',['as'=>'editUser','uses'=>'Auth\AdminController@editUser']);
 	// Route::get('sua-tai-khoan-nguoi-dung',['as'=>'editUserClient','uses'=>'Auth\AdminController@editUserClient']);
 	Route::get('sua-san-pham/{id}',['as'=>'editProduct','uses'=>'Auth\AdminController@editProduct']);
+	Route::get('sua-tin-tuc/{id}',['as'=>'editBlog','uses'=>'Auth\AdminController@editBlog']);
 	Route::get('sua-san-pham-chi-tiet/{id}',['as'=>'editProductDetail','uses'=>'Auth\AdminController@editProductDetail']);
 	Route::get('sua-danh-muc/{systems_id}/{id}',['as'=>'editCategorie','uses'=>'Auth\AdminController@editCategorie']);
 	Route::get('sua-thong-tin-he-thong/{id}',['as'=>'editSystem','uses'=>'Auth\AdminController@editSystem']);
 	Route::get('sua-slide/{id}',['as'=>'editSlide','uses'=>'Auth\AdminController@editSlide']);
+	Route::get('sua-menu/{id}',['as'=>'editMenu','uses'=>'Auth\AdminController@editMenu']);
 
 	Route::get('xoa-tai-khoan-quan-tri',['as'=>'deleteUser','uses'=>'Auth\AdminController@deleteUser']);
 	Route::get('xoa-tai-khoan-nguoi-dung',['as'=>'deleteUserClient','uses'=>'Auth\AdminController@deleteUserClient']);
-	Route::get('xoa-san-pham/{id}',['as'=>'deleteProduct','uses'=>'Auth\AdminController@deleteProduct']);
+	Route::get('xoa-san-pham/{id}',['as'=>'deleteProduct','uses'=>'Auth\AdminController@deleteBlog']);
+	Route::get('xoa-tin-tuc/{id}',['as'=>'deleteBlog','uses'=>'Auth\AdminController@deleteProduct']);
+	Route::get('xoa-menu/{id}',['as'=>'deleteMenu','uses'=>'Auth\AdminController@deleteMenu']);
 	Route::get('xoa-san-pham-chi-tiet/{id}',['as'=>'deleteProductDetail','uses'=>'Auth\AdminController@deleteProductDetail']);
-	Route::get('xoa-danh-muc',['as'=>'deleteCategorie','uses'=>'Auth\AdminController@deleteCategorie']);
+	Route::get('xoa-danh-muc/{id}',['as'=>'deleteCategorie','uses'=>'Auth\AdminController@deleteCategorie']);
 	Route::get('xoa-he-thong',['as'=>'deleteSystem','uses'=>'Auth\AdminController@deleteSystem']);
 
 	Route::post('postAddUser',['as'=>'postAddUser','uses'=>'Auth\AdminController@postAddUser']);
 	Route::post('postEditUser/{id}',['as'=>'postEditUser','uses'=>'Auth\AdminController@postEditUser']);
 	Route::post('postAddProduct',['as'=>'postAddProduct','uses'=>'Auth\AdminController@postAddProduct']);
-	Route::post('postEditProduct',['as'=>'postEditProduct','uses'=>'Auth\AdminController@postEditProduct']);
+	Route::post('postEditProduct/{id}',['as'=>'postEditProduct','uses'=>'Auth\AdminController@postEditProduct']);
+	Route::post('postAddBlog',['as'=>'postAddBlog','uses'=>'Auth\AdminController@postAddBlog']);
+	Route::post('postAddMenu',['as'=>'postAddMenu','uses'=>'Auth\AdminController@postAddMenu']);
+	Route::post('postEditBlog',['as'=>'postEditBlog','uses'=>'Auth\AdminController@postEditBlog']);
 	Route::post('postAddCategorie',['as'=>'postAddCategorie','uses'=>'Auth\AdminController@postAddCategorie']);
 	Route::post('postEditCategorie',['as'=>'postEditCategorie','uses'=>'Auth\AdminController@postEditCategorie']);
 	Route::post('postAddSystem',['as'=>'postAddSystem','uses'=>'Auth\AdminController@postAddSystem']);
@@ -119,6 +132,7 @@ Route::group(['prefix'=>'auth/admin','middleware'=>'auth'], function(){
 	Route::get('system-disable/{id}',['as'=>'systemDisable','uses'=>'Auth\AdminController@systemDisable']);
 	Route::get('enable-categorie/{id}',['as'=>'enableCategorie','uses'=>'Auth\AdminController@enableCategorie']);
 	Route::get('disable-categorie/{id}',['as'=>'disableCategorie','uses'=>'Auth\AdminController@disableCategorie']);
+	Route::get('update-menu/{id}-{value}',['as'=>'updateMenu','uses'=>'Auth\AdminController@updateMenu']);
 	
 });
 

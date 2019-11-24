@@ -113,7 +113,9 @@
 							<br>
 							<div class="form-group">
 								<select class="form-control" name="parent_id">
+									@if(count($category) ==0)
 									<option value="0">Thư Mục Gốc</option>
+									@endif
 									@foreach($category as $cate)
 										<option value="{{$cate->id}}">{{$cate->name}}</option>
 									@endforeach

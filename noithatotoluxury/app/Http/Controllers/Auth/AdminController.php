@@ -18,12 +18,15 @@ use App\TagCategories;
 use App\ProductsDetail;
 use App\OrdersDetail;
 use App\Orders;
+use App\Blogs;
+use App\Menus;
 use App\Http\Controllers\AuthClient\ClientController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\addUserRequest;
 use App\Http\Requests\addProductRequest;
 use App\Http\Requests\addCategorieRequest;
 use App\Http\Requests\addSystemRequest;
+use App\Http\Requests\addBlogRequest;
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\Response;
 use Illuminate\Support\Facades\Input;
@@ -56,6 +59,9 @@ class AdminController extends Controller
         	return view('auth.page-content.addProduct',['properties'=>$properties,'properties_type'=>$properties_type,'category'=>$category]);
         }
     }
+    public function addBlog() {
+        return view('auth.page-content.addBlog');
+    }
     public function addCategorie() {
         $category = Categories::where('systems_id',Auth::user()->systems_id)->get();
     	return view('auth.page-content.addCategorie',['category'=>$category]);
@@ -74,6 +80,10 @@ class AdminController extends Controller
     public function addPropertie(){
         return view('auth.page-content.addPropertie');
     }
+    public function addMenu(){
+        $cates = Categories::where('display',1)->get();
+        return view('auth.page-content.addMenu',['cates'=>$cates]);
+    }
     // -------------------
     public function listProducts() {
         $categories = Categories::where('systems_id',Auth::user()->systems_id)->get();
@@ -90,6 +100,10 @@ class AdminController extends Controller
             ->get();
     	return view('auth.page-content.listProducts',['products'=>$products]);
         
+    }
+    public function listBlogs(){
+        $blogs = Blogs::select()->where('display',1)->orderBy('created_at','DESC')->get();
+        return View('auth.page-content.listBlogs',['blogs'=>$blogs]);
     }
     public function listProductsDetail($id){
         $products_detail = ProductsDetail::where('products_id',$id)->get();
@@ -113,6 +127,10 @@ class AdminController extends Controller
         $systems = Systems::where('id','!=',Auth::user()->systems_id)->get();
         return view('auth.page-content.listSystems',['systems'=>$systems]);
 
+    }
+    public function listMenus(){
+        $menus = Menus::select()->get();
+        return view('auth.page-content.listMenus',['menus'=>$menus]);
     }
 
     public function listOrder(){
@@ -191,6 +209,11 @@ class AdminController extends Controller
         return redirect()->route('listProducts')->with(['flash_level'=>'success','flash_message'=>'Thêm sản phẩm thành công']);
         
     }
+    public function postAddBlog(addBlogRequest $request){
+        $blog =new Blogs;
+        $blog->addBlog($request);
+        return redirect()->route('listBlogs')->with(['flash_level'=>'success','flash_message'=>'Thêm tin tức thành công']);
+    }
 
 
     public function postAddCategorie(addCategorieRequest $request){
@@ -198,6 +221,12 @@ class AdminController extends Controller
         $cate->addCategorie($request);
         return redirect()->route('listCategories')->with(['flash_level'=>'success','flash_message'=>'Thêm danh mục thành công']);
 
+    }
+    public function postAddMenu(Request $request){
+        $menu =new Menus;
+        $menu->addMenu($request);
+        return redirect()->route('listMenus')->with(['flash_level'=>'success','flash_message'=>'Thêm menu thành công']);
+        // return $request->url;
     }
     public function postEditUser(){
 
@@ -319,6 +348,13 @@ class AdminController extends Controller
         $system->delete();
         return redirect()->route('listSystems')->with(['flash_level'=>'success','flash_message'=>'Xóa gian hàng thành công']);
     }
+    public function deleteCategorie($id){
+        if($id!=1){
+            $cate = Categories::where('id',$id)->get()->first();
+            $cate->delete();
+        }
+        return redirect()->route('listCategories')->with(['flash_level'=>'success','flash_message'=>'Xóa gian hàng thành công']);
+    }
 
     public function deleteProduct($id){
         $product = Products::where('id',$id)->get()->first();
@@ -367,6 +403,12 @@ class AdminController extends Controller
         $cate = Categories::where('id',$id)->get()->first();
         $cate->display = 0;
         $cate->save();
+    }
+    public function updateMenu($id,$value){
+        $menu = Menus::where('id',$id)->get()->first();
+        $menu->stt =$value;
+        $menu->save();
+        echo "thành công";
     }
     
 }

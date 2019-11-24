@@ -34,6 +34,7 @@ class Products extends Model
         $pr->views = 0;
         $pr->orders = 0;
         $pr->highlights = $request->highlights;
+        $pr->video = $request->video;
         $products_detail = $request->products_detail;
         $price = $request->price;
         if(isset($products_detail)){
@@ -45,6 +46,7 @@ class Products extends Model
                     $productDetail = new ProductsDetail;
                     $productDetail->price = $request->price[$i];
                     $productDetail->amount = $request->amount[$i];
+                    $productDetail->sale = $request->sale[$i];
                     $productDetail->products_id = $pr->id;
                     $productDetail->save();
                     $countPropertiesDetail = count($products_detail[$i]);
@@ -64,6 +66,7 @@ class Products extends Model
             $productDetail = new ProductsDetail;
             $productDetail->price = $request->price[0];
             $productDetail->amount = $request->amount[0];
+            $productDetail->sale = $request->sale[0];
             $productDetail->products_id = $pr->id;
             $productDetail->save();
         }

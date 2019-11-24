@@ -33,3 +33,9 @@ Version: 3.0
     opacity: 1;
     transform: scale(1.2);
 }
+.box {
+	background: #fff;
+}
+.box-text p {
+	font-size: 12px;
+}

@@ -12,129 +12,30 @@
 						<style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1419250758402{background-color: #353535 !important;}.vc_custom_1419250916067{padding-right: 15px !important;padding-left: 15px !important;}</style>
 						<div class="vc_grid vc_row vc_grid-gutter-30px vc_pageable-wrapper vc_hook_hover" data-vc-pageable-content="true">
 							<div class="vc_pageable-slide-wrapper vc_clearfix" data-vc-grid-content="true">
-								<div class="vc_grid-item vc_clearfix vc_col-sm-3">
-									<div class="vc_grid-item-mini vc_clearfix ">
-										<div class="vc_gitem-animated-block  vc_gitem-animate vc_gitem-animate-flipFadeIn" data-vc-animation="flipFadeIn">
-											<div class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-3-4" style="background-image: url('https://mdbuddy.vn/home/wp-content/uploads/2018/06/MDBuddy-tai-vietnam.png') !important;">
-												<img src="https://mdbuddy.vn/home/wp-content/uploads/2018/06/MDBuddy-tai-vietnam.png" class="vc_gitem-zone-img" alt="">
-												<div class="vc_gitem-zone-mini"></div>
-											</div>
-											<div class="vc_gitem-zone vc_gitem-zone-b vc_custom_1419250758402 vc-gitem-zone-height-mode-auto vc_gitem-is-link">
-												<a href="https://mdbuddy.vn/mdbuddy-chinh-thuc-co-mat-tai-vietnam/" title="MDBuddy chính thức có mặt tại Vietnam" class="vc_gitem-link vc-zone-link"></a>
-												<div class="vc_gitem-zone-mini">
-													<div class="vc_gitem_row vc_row vc_gitem-row-position-middle">
-														<div class="vc_col-sm-12 vc_gitem-col vc_gitem-col-align- vc_custom_1419250916067">
-															<div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title" >
-																<div style="font-size: 22px;color: #ffffff;line-height: 1.2;text-align: center;font-family:Roboto;font-weight:500;font-style:normal" >MDBuddy chính thức có mặt tại Vietnam</div>
-															</div>
-															<div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_50 vc_sep_pos_align_center vc_separator_no_text vc_sep_color_white" >
-																<span class="vc_sep_holder vc_sep_holder_l"><span  class="vc_sep_line"></span></span>
-																<span class="vc_sep_holder vc_sep_holder_r"><span  class="vc_sep_line"></span></span>
-															</div>
-															<div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_excerpt" >
-																<div style="font-size: 14px;color: #ffffff;line-height: 1.3;text-align: center;font-family:Roboto;font-weight:300;font-style:normal" ><p>Từ tháng 7/2018 thương hiệu sản xuất thiết bị luyện tập thể thao cá nhân khổng lồ MDBuddy chính thức có mặt tại Việt Nam thông qua sự phân phối độc quyền của Công ty cổ phần 2life Việt Nam Trước đó, thương hiệu này đã hiện diện tại hơn 40 quốc gia và vùng lãnh [&#8230;]
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
+								@foreach($blogs as $blog)
+									<div class="vc_grid-item vc_clearfix vc_col-sm-3">
+										<div class="vc_grid-item-mini vc_clearfix ">
+											<div class="box box-text-bottom box-blog-post has-hover">
+				            					<div class="box-image">
+							  						<div class="image-cover" style="padding-top:16-9;">
+							  							<a href="{{$blog->url}}">
+							  								<img width="226" height="300" src="{{asset('uploads/images/blogs/'.$blog->image)}}" class="attachment-medium size-medium wp-post-image" alt="{{$blog->title}}" sizes="(max-width: 226px) 100vw, 226px">
+							  							</a>
+							  						</div>
+				  						  		</div><!-- .box-image -->
+					          					<div class="box-text text-center">
+													<div class="box-text-inner blog-post-inner">
+														<a href="{{$blog->url}}"><h5 class="post-title is-large ">{{$blog->title}}</h5></a>
+														<div class="is-divider"></div>
+														<p class="from_the_blog_excerpt ">{!! \Illuminate\Support\Str::words($blog->content, 10,'...')  !!}</p>
+													</div><!-- .box-text-inner -->
+												</div><!-- .box-text -->
+											
 											</div>
 										</div>
+										<div class="vc_clearfix"></div>
 									</div>
-									<div class="vc_clearfix"></div>
-								</div><div class="vc_grid-item vc_clearfix vc_col-sm-3">
-									<div class="vc_grid-item-mini vc_clearfix ">
-										<div class="vc_gitem-animated-block  vc_gitem-animate vc_gitem-animate-flipFadeIn" data-vc-animation="flipFadeIn">
-											<div class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-3-4" style="background-image: url('https://mdbuddy.vn/home/wp-content/uploads/2018/06/MDBuddy-tai-vietnam.png') !important;">
-												<img src="https://mdbuddy.vn/home/wp-content/uploads/2018/06/MDBuddy-tai-vietnam.png" class="vc_gitem-zone-img" alt="">
-												<div class="vc_gitem-zone-mini"></div>
-											</div>
-											<div class="vc_gitem-zone vc_gitem-zone-b vc_custom_1419250758402 vc-gitem-zone-height-mode-auto vc_gitem-is-link">
-												<a href="https://mdbuddy.vn/mdbuddy-chinh-thuc-co-mat-tai-vietnam/" title="MDBuddy chính thức có mặt tại Vietnam" class="vc_gitem-link vc-zone-link"></a>
-												<div class="vc_gitem-zone-mini">
-													<div class="vc_gitem_row vc_row vc_gitem-row-position-middle">
-														<div class="vc_col-sm-12 vc_gitem-col vc_gitem-col-align- vc_custom_1419250916067">
-															<div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title" >
-																<div style="font-size: 22px;color: #ffffff;line-height: 1.2;text-align: center;font-family:Roboto;font-weight:500;font-style:normal" >MDBuddy chính thức có mặt tại Vietnam</div>
-															</div>
-															<div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_50 vc_sep_pos_align_center vc_separator_no_text vc_sep_color_white" >
-																<span class="vc_sep_holder vc_sep_holder_l"><span  class="vc_sep_line"></span></span>
-																<span class="vc_sep_holder vc_sep_holder_r"><span  class="vc_sep_line"></span></span>
-															</div>
-															<div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_excerpt" >
-																<div style="font-size: 14px;color: #ffffff;line-height: 1.3;text-align: center;font-family:Roboto;font-weight:300;font-style:normal" ><p>Từ tháng 7/2018 thương hiệu sản xuất thiết bị luyện tập thể thao cá nhân khổng lồ MDBuddy chính thức có mặt tại Việt Nam thông qua sự phân phối độc quyền của Công ty cổ phần 2life Việt Nam Trước đó, thương hiệu này đã hiện diện tại hơn 40 quốc gia và vùng lãnh [&#8230;]
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="vc_clearfix"></div>
-								</div>
-								<div class="vc_grid-item vc_clearfix vc_col-sm-3">
-									<div class="vc_grid-item-mini vc_clearfix ">
-										<div class="vc_gitem-animated-block  vc_gitem-animate vc_gitem-animate-flipFadeIn" data-vc-animation="flipFadeIn">
-											<div class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-3-4" style="background-image: url('https://mdbuddy.vn/home/wp-content/uploads/2018/06/MDBuddy-tai-vietnam.png') !important;">
-												<img src="https://mdbuddy.vn/home/wp-content/uploads/2018/06/MDBuddy-tai-vietnam.png" class="vc_gitem-zone-img" alt="">
-												<div class="vc_gitem-zone-mini"></div>
-											</div>
-											<div class="vc_gitem-zone vc_gitem-zone-b vc_custom_1419250758402 vc-gitem-zone-height-mode-auto vc_gitem-is-link">
-												<a href="https://mdbuddy.vn/mdbuddy-chinh-thuc-co-mat-tai-vietnam/" title="MDBuddy chính thức có mặt tại Vietnam" class="vc_gitem-link vc-zone-link"></a>
-												<div class="vc_gitem-zone-mini">
-													<div class="vc_gitem_row vc_row vc_gitem-row-position-middle">
-														<div class="vc_col-sm-12 vc_gitem-col vc_gitem-col-align- vc_custom_1419250916067">
-															<div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title" >
-																<div style="font-size: 22px;color: #ffffff;line-height: 1.2;text-align: center;font-family:Roboto;font-weight:500;font-style:normal" >MDBuddy chính thức có mặt tại Vietnam</div>
-															</div>
-															<div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_50 vc_sep_pos_align_center vc_separator_no_text vc_sep_color_white" >
-																<span class="vc_sep_holder vc_sep_holder_l"><span  class="vc_sep_line"></span></span>
-																<span class="vc_sep_holder vc_sep_holder_r"><span  class="vc_sep_line"></span></span>
-															</div>
-															<div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_excerpt" >
-																<div style="font-size: 14px;color: #ffffff;line-height: 1.3;text-align: center;font-family:Roboto;font-weight:300;font-style:normal" ><p>Từ tháng 7/2018 thương hiệu sản xuất thiết bị luyện tập thể thao cá nhân khổng lồ MDBuddy chính thức có mặt tại Việt Nam thông qua sự phân phối độc quyền của Công ty cổ phần 2life Việt Nam Trước đó, thương hiệu này đã hiện diện tại hơn 40 quốc gia và vùng lãnh [&#8230;]
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="vc_clearfix"></div>
-								</div>
-								<div class="vc_grid-item vc_clearfix vc_col-sm-3">
-									<div class="vc_grid-item-mini vc_clearfix ">
-										<div class="vc_gitem-animated-block  vc_gitem-animate vc_gitem-animate-flipFadeIn" data-vc-animation="flipFadeIn">
-											<div class="vc_gitem-zone vc_gitem-zone-a vc-gitem-zone-height-mode-auto vc-gitem-zone-height-mode-auto-3-4" style="background-image: url('https://mdbuddy.vn/home/wp-content/uploads/2018/06/MDBuddy-tai-vietnam.png') !important;">
-												<img src="https://mdbuddy.vn/home/wp-content/uploads/2018/06/MDBuddy-tai-vietnam.png" class="vc_gitem-zone-img" alt="">
-												<div class="vc_gitem-zone-mini"></div>
-											</div>
-											<div class="vc_gitem-zone vc_gitem-zone-b vc_custom_1419250758402 vc-gitem-zone-height-mode-auto vc_gitem-is-link">
-												<a href="https://mdbuddy.vn/mdbuddy-chinh-thuc-co-mat-tai-vietnam/" title="MDBuddy chính thức có mặt tại Vietnam" class="vc_gitem-link vc-zone-link"></a>
-												<div class="vc_gitem-zone-mini">
-													<div class="vc_gitem_row vc_row vc_gitem-row-position-middle">
-														<div class="vc_col-sm-12 vc_gitem-col vc_gitem-col-align- vc_custom_1419250916067">
-															<div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_title" >
-																<div style="font-size: 22px;color: #ffffff;line-height: 1.2;text-align: center;font-family:Roboto;font-weight:500;font-style:normal" >MDBuddy chính thức có mặt tại Vietnam</div>
-															</div>
-															<div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_50 vc_sep_pos_align_center vc_separator_no_text vc_sep_color_white" >
-																<span class="vc_sep_holder vc_sep_holder_l"><span  class="vc_sep_line"></span></span>
-																<span class="vc_sep_holder vc_sep_holder_r"><span  class="vc_sep_line"></span></span>
-															</div>
-															<div class="vc_custom_heading vc_gitem-post-data vc_gitem-post-data-source-post_excerpt" >
-																<div style="font-size: 14px;color: #ffffff;line-height: 1.3;text-align: center;font-family:Roboto;font-weight:300;font-style:normal" ><p>Từ tháng 7/2018 thương hiệu sản xuất thiết bị luyện tập thể thao cá nhân khổng lồ MDBuddy chính thức có mặt tại Việt Nam thông qua sự phân phối độc quyền của Công ty cổ phần 2life Việt Nam Trước đó, thương hiệu này đã hiện diện tại hơn 40 quốc gia và vùng lãnh [&#8230;]
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="vc_clearfix"></div>
-								</div>
+								@endforeach
 							</div>
 						</div>
 					</div>
