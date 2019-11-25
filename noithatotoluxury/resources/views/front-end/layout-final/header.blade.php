@@ -34,7 +34,7 @@
             					<li id="menu-item-{{$menu->id}}" class="menu-item menu-item-object-page menu-item-has-children has-dropdown">
             						<a href="{{$menu->url}}" class="nav-top-link">{{$menu->name}}<i class="icon-angle-down" ></i></a>
             						@php
-            							$carts = App\Categories::where('parent_id',$menu->categories_id)->get();
+            							$cates = App\Categories::where('parent_id',$menu->categories_id)->get();
             						@endphp
             						@if(count($cates) !=0)
 	            						<ul class='nav-dropdown nav-dropdown-default'>

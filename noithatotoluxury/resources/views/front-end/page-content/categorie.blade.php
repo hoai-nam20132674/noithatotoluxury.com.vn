@@ -121,12 +121,27 @@
 	   			</div><!-- .flex-right -->
 	   			<div class="woocommerce-notices-wrapper"></div>
 	   			<div class="products row row-small large-columns-3 medium-columns-3 small-columns-2 has-equal-box-heights">
-	   				@include('front-end.layout-final.product-box')
+	   				@foreach($products as $product)
+	   					@include('front-end.layout-final.product-box')
+	   				@endforeach
 	   			</div><!-- row -->
 	   			<div class="container">
 	   				<nav class="woocommerce-pagination">
 	   					<ul class="page-numbers nav-pagination links text-center">
-	   						<li>
+	   						@if( $products->currentPage() != 1)
+						  		<li class="page-item">
+									<a class="next page-number" href="{{$products->url($products->currentPage()-1)}}"><i class="icon-angle-left"></i></a>
+								</li>
+						  	@endif
+						  	@for($i =1; $i<=$products->lastPage();$i++)
+						  		<li class="{{($products->currentPage()==$i) ? 'current' : ''}} page-item"><a class="page-number page-link" href="{{$products->url($i)}}">{{$i}}</a></li>
+						  	@endfor
+						  	@if( $products->currentPage() != $products->lastPage())
+							  	<li class="page-item">
+									<a class="next page-number" href="{{$products->url($products->currentPage()+1)}}"><i class="icon-angle-right"></i></a>
+								</li>
+							@endif
+	   						<!-- <li>
 	   							<span aria-current='page' class='page-number current'>1</span>
 	   						</li>
 	   						<li>
@@ -149,7 +164,7 @@
 	   						</li>
 	   						<li>
 	   							<a class="next page-number" href="https://mdbuddy.vn/shop/page/2/"><i class="icon-angle-right"></i></a>
-	   						</li>
+	   						</li> -->
 	   					</ul>
 	   				</nav>
 	   			</div>

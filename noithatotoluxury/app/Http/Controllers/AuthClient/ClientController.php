@@ -246,6 +246,7 @@ class ClientController extends Controller
     	if(!$cates->isEmpty()){
             $system = Systems::where('id',1)->get()->first();
             $cate = Categories::where('url',$url)->get()->first();
+            $menus = Menus::select()->get();
             $cates = Categories::where('systems_id',1)->where('display',1)->get();
             $cateRoot = array();
             $x = 0;
@@ -258,16 +259,24 @@ class ClientController extends Controller
             }
             $cates = $cateRoot;
             //lấy list danh mục các gian hàng có tag là danh mục root đang chọn 
-            $arrayIdChild = $this->getCategorieChildRoot($cate->id);
+            $arrayIdChild = array();
+            $arrayIdChild = $this->getIdChildCategorieAllLevel($cate->id,$arrayIdChild);
+            $arrayIdChild[count($arrayIdChild)]=$cate->id;
             //end lấy danh mục con của danh mục root_categorie_id
             // --------------------------------------
             $products = Products::join('images_products', 'products.id', '=', 'images_products.products_id')->join('products_detail', 'products.id', '=', 'products_detail.products_id')->whereIn('products.categories_id',$arrayIdChild)->where('products.display',1)->where('images_products.role',1)
-            ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id')
+            ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id','products_detail.id AS products_detail_id')
             ->get();
             $productsGroup = $this->groupProduct($products);
             $products = $this->filterProduct($productsGroup);
+            $products = $this->paginateCustum($products, $perPage = 1, $page = null, $options = []);
+            $products_highlight = Products::join('images_products', 'products.id', '=', 'images_products.products_id')->join('products_detail', 'products.id', '=', 'products_detail.products_id')->where('products.display',1)->where('products.highlights',1)->where('images_products.role',1)->orderBy('products.updated_at', 'DESC')
+            ->select('products.*', 'images_products.url AS avatar','products_detail.price AS maxPrice','products_detail.products_id','products_detail.id AS products_detail_id')
+            ->get();
+            $productsGroup = $this->groupProduct($products_highlight);
+            $products_highlight = $this->filterProduct($productsGroup);
             $cate = Categories::where('url',$url)->get()->first();
-    		return view('front-end.page-content.categorie',['system'=>$system,'cates'=>$cates,'cate'=>$cate,'products'=>$products]);
+    		return view('front-end.page-content.categorie',['system'=>$system,'cates'=>$cates,'cate'=>$cate,'products'=>$products,'menus'=>$menus,'products_highlight'=>$products_highlight]);
     	}
         if(!$products->isEmpty()){
             $system = Systems::where('id',1)->get()->first();
